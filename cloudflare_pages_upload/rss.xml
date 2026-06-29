@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>법무법인 태앤규 전주 개인회생 칼럼</title>
+    <title>법무법인 태앤규 개인회생 칼럼</title>
     <link>https://taeandkyujeonju.com/blog/</link>
-    <description>전주 개인회생, 개인파산, 채무조정 법률칼럼</description>
+    <description>전주, 군산, 익산 주변 개인회생, 개인파산, 채무조정 법률칼럼</description>
     <language>ko</language>
-    <lastBuildDate>Sat, 27 Jun 2026 14:35:45 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>익산 주변 개인회생, 변제금이 걱정될 때 먼저 볼 부분</title>
+      <link>https://taeandkyujeonju.com/blog/iksan-personal-rehabilitation-nearby-guide</link>
+      <guid isPermaLink="true">https://taeandkyujeonju.com/blog/iksan-personal-rehabilitation-nearby-guide</guid>
+      <description>익산 주변 개인회생을 고민하는 분들을 위해 변제금 산정, 생계비, 소득, 재산, 금지명령 체크포인트를 정리했습니다.</description>
+      <pubDate>Sun, 28 Jun 2026 15:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>군산 주변 개인회생, 신청 전 먼저 확인해야 할 기준</title>
+      <link>https://taeandkyujeonju.com/blog/gunsan-personal-rehabilitation-nearby-guide</link>
+      <guid isPermaLink="true">https://taeandkyujeonju.com/blog/gunsan-personal-rehabilitation-nearby-guide</guid>
+      <description>군산 주변 개인회생을 알아보는 분들을 위해 채무 규모, 소득, 재산, 최근 대출, 금지명령 가능성을 정리했습니다.</description>
+      <pubDate>Sun, 28 Jun 2026 15:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>전주개인회생변호사, 개인회생 신청 전 무엇을 확인해야 할까?</title>
       <link>https://taeandkyujeonju.com/blog/jeonju-personal-rehabilitation-lawyer-guide</link>
       <guid isPermaLink="true">https://taeandkyujeonju.com/blog/jeonju-personal-rehabilitation-lawyer-guide</guid>
-      <description>전주개인회생변호사를 찾는 분들을 위한 개인회생 신청 전 체크리스트입니다. 신청 자격, 변제금, 금지명령, 준비서류, 상담 전 확인사항을 정리했습니다.</description>
+      <description>전주개인회생변호사를 찾는 분들을 위한 개인회생 신청 전 체크리스트입니다.</description>
       <pubDate>Fri, 26 Jun 2026 15:00:00 GMT</pubDate>
     </item>
   </channel>
