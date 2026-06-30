@@ -17,7 +17,7 @@ const esc = (value = '') => String(value)
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;');
 
-const subjects = [
+const baseSubjects = [
   ['개인회생 신청 전 소득자료 정리', '소득 확인이 중요한 이유'],
   ['최근 대출이 있을 때 개인회생 준비', '최근 채무 설명 방법'],
   ['급여압류 전후 개인회생 대응', '압류 대응 순서'],
@@ -29,6 +29,8 @@ const subjects = [
   ['군산 익산 거주자의 전주 상담 준비', '인근 지역 상담 포인트'],
   ['채권자 독촉 연락을 받은 경우', '독촉 대응 방법']
 ];
+const angles = ['준비서류', '주의할 점', '상담 체크'];
+const phases = ['기본편', '사례편', '점검편'];
 
 const makeSlug = (text, slot) => `personal-rehabilitation-${slot + 1}-${publishDate}-${text.replaceAll(' ', '-').replace(/[^\uAC00-\uD7A3a-zA-Z0-9-]/g, '').toLowerCase()}`;
 
@@ -90,8 +92,8 @@ mkdirSync('cloudflare_pages_upload/blog', { recursive: true });
 
 let created = 0;
 for (let slot = 0; slot < 3; slot += 1) {
-  const item = subjects[(dayIndex * 3 + slot) % subjects.length];
-  const title = `${item[0]}, 무엇부터 확인해야 할까요?`;
+  const item = baseSubjects[dayIndex % baseSubjects.length];
+  const title = `${item[0]} ${phases[Math.floor(dayIndex / baseSubjects.length)] || '실무편'} ${angles[slot]}, 무엇부터 확인해야 할까요?`;
   const slug = makeSlug(item[0], slot);
   const file = `cloudflare_pages_upload/blog/${slug}.html`;
   if (existsSync(file)) continue;
