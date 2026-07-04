@@ -201,6 +201,7 @@ h2{font-family:'Noto Serif KR',serif;color:var(--navy);font-size:clamp(26px,3.4v
 .seo-panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:26px;box-shadow:0 10px 30px rgba(13,23,40,.06)}
 .seo-panel h3{font-family:'Noto Serif KR',serif;color:var(--navy);font-size:22px;margin-bottom:12px;word-break:keep-all}
 .seo-panel p{color:var(--muted);font-size:15px;line-height:1.9;word-break:keep-all}
+.seo-panel p + p{margin-top:12px}
 .seo-list{display:grid;gap:10px;list-style:none;margin-top:14px}
 .seo-list li{padding-left:18px;position:relative;color:#344054;font-size:14px;word-break:keep-all}
 .seo-list li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
@@ -380,7 +381,7 @@ footer{background:#090f1a;color:rgba(255,255,255,.55);padding:32px 22px;font-siz
           <li><span>최근 대출·압류 여부</span><strong>중요</strong></li>
         </ul>
         <div class="actions" style="margin-top:18px">
-          <a class="btn ghost" href="https://blog.naver.com/taeandkyu1206/224194103693" target="_blank" rel="noopener">필요서류 다운로드</a>
+          <a class="btn ghost" href="/blog/">개인회생 칼럼 보기</a>
         </div>
       </div>
     </div>
@@ -503,7 +504,7 @@ footer{background:#090f1a;color:rgba(255,255,255,.55);padding:32px 22px;font-siz
           <div class="diag-actions">
             <button class="btn primary" id="diagnoseBtn" type="button">진단 결과 보기</button>
             <a class="btn green" href="https://naver.me/Fy2SbxqM" target="_blank" rel="noopener">네이버 예약</a>
-            <a class="btn ghost" href="https://blog.naver.com/taeandkyu1206/224194103693" target="_blank" rel="noopener">필요서류 다운로드</a>
+            <a class="btn ghost" href="/blog/">개인회생 칼럼 보기</a>
           </div>
           <div class="result" id="result" aria-live="polite"></div>
         </div>
@@ -562,7 +563,7 @@ footer{background:#090f1a;color:rgba(255,255,255,.55);padding:32px 22px;font-siz
       <div class="head"><div class="label">PROCESS</div><h2>진행절차</h2></div>
       <div class="steps">
         <div class="step"><b>1</b><h3>자격진단</h3><p>채무액, 재산, 소득, 가족관계를 확인합니다.</p></div>
-        <div class="step"><b>2</b><h3>서류 준비</h3><p>부채증명서, 소득자료, 재산자료를 정리합니다.</p><a class="step-link" href="https://blog.naver.com/taeandkyu1206/224194103693" target="_blank" rel="noopener">필요서류 확인</a></div>
+        <div class="step"><b>2</b><h3>서류 준비</h3><p>부채증명서, 소득자료, 재산자료를 정리합니다.</p><a class="step-link" href="/blog/">개인회생 칼럼 보기</a></div>
         <div class="step"><b>3</b><h3>신청서 제출</h3><p>신청서와 변제계획안을 제출합니다.</p></div>
         <div class="step"><b>4</b><h3>보정 대응</h3><p>법원 보정명령에 필요한 자료를 보완합니다.</p></div>
         <div class="step"><b>5</b><h3>인가 후 변제</h3><p>인가된 변제계획에 따라 변제합니다.</p></div>
@@ -572,8 +573,8 @@ footer{background:#090f1a;color:rgba(255,255,255,.55);padding:32px 22px;font-siz
 
   <section class="section" id="columns">
     <div class="wrap">
-      <div class="head"><div class="label">Recovery Column</div><h2>개인회생 블로그</h2></div>
-      <p class="sub">상담 전 많이 궁금해하는 개인회생 기준과 압류 대응을 정리했습니다.</p>
+      <div class="head"><div class="label">Recovery Column</div><h2>개인회생 칼럼</h2></div>
+      <p class="sub">홈페이지 안에서 바로 확인할 수 있는 개인회생 기준과 압류 대응 칼럼입니다.</p>
       <div class="cards">
         <a class="card" href="/blog/personal-rehabilitation-before-application/"><b>개인회생</b><h3>개인회생 신청 전, 먼저 확인해야 할 5가지</h3><p>소득, 채무액, 재산, 최근 대출, 부양가족을 함께 확인해야 합니다.</p></a>
         <a class="card" href="/blog/self-employed-personal-rehabilitation/"><b>자영업자 개인회생</b><h3>자영업자도 개인회생이 가능할까요?</h3><p>매출과 사업비를 구분해 실제 남는 소득을 설명하는 것이 중요합니다.</p></a>
@@ -592,7 +593,9 @@ footer{background:#090f1a;color:rgba(255,255,255,.55);padding:32px 22px;font-siz
       <div class="seo-grid">
         <article class="seo-panel">
           <h3>전주에서 개인회생을 검토할 때 먼저 볼 부분</h3>
-          <p>전주 개인회생 상담에서는 현재 채무가 무담보·담보채무 기준에 맞는지, 매달 반복적인 소득이 있는지, 재산보다 채무가 많은지부터 확인합니다. 특히 전주지방법원 개인회생 절차는 신청서 제출 후 보정명령에 맞춰 자료를 보완해야 하므로 처음부터 채무 발생 경위와 소득자료를 정리하는 것이 중요합니다.</p>
+          <p>전주 개인회생 상담에서는 먼저 현재 채무가 무담보·담보채무 기준에 맞는지 확인합니다.</p>
+          <p>그다음 매달 반복적인 소득이 있는지, 재산보다 채무가 많은지, 최근 대출이나 압류 위험이 있는지를 함께 살펴봅니다.</p>
+          <p>특히 전주지방법원 개인회생 절차는 신청서 제출 후 보정명령에 맞춰 자료를 보완해야 합니다. 그래서 처음부터 채무 발생 경위와 소득자료를 차분히 정리하는 것이 중요합니다.</p>
           <div class="local-keywords">
             <span>전주개인회생</span>
             <span>전주개인회생변호사</span>
@@ -653,7 +656,7 @@ footer{background:#090f1a;color:rgba(255,255,255,.55);padding:32px 22px;font-siz
             <a class="btn kakao" href="https://pf.kakao.com/_vsGmn/chat" target="_blank" rel="noopener">카카오톡 상담</a>
             <a class="btn light" href="tel:0507-1336-5516">전화상담</a>
             <a class="btn green" href="https://naver.me/Fy2SbxqM" target="_blank" rel="noopener">네이버예약</a>
-            <a class="btn ghost" href="https://blog.naver.com/taeandkyu1206/224194103693" target="_blank" rel="noopener">필요서류 다운로드</a>
+            <a class="btn ghost" href="/blog/">개인회생 칼럼 보기</a>
           </div>
         </div>
       </div>
