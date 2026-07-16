@@ -1,0 +1,23 @@
+# Consolidate the former three-post-per-day series into one useful page per search intent.
+/blog/personal-rehabilitation-*-개인회생-신청-전-소득자료-정리 /blog/personal-rehabilitation-income-check 301
+/blog/personal-rehabilitation-*-최근-대출이-있을-때-개인회생-준비 /blog/personal-rehabilitation-recent-loan 301
+/blog/personal-rehabilitation-*-급여압류-전후-개인회생-대응 /blog/personal-rehabilitation-seizure-response 301
+/blog/personal-rehabilitation-*-전주-개인회생-상담-전-준비서류 /blog/jeonju-personal-rehabilitation-lawyer-guide 301
+/blog/personal-rehabilitation-*-배우자-재산이-있는-경우-확인할-점 /blog/personal-rehabilitation-spouse-property 301
+/blog/personal-rehabilitation-*-자영업자-개인회생-매출자료-정리 /blog/self-employed-personal-rehabilitation-income 301
+/blog/personal-rehabilitation-*-카드론과-현금서비스가-많은-경우 /blog/personal-rehabilitation-recent-loan 301
+/blog/personal-rehabilitation-*-개인회생-변제금이-정해지는-기준 /blog/personal-rehabilitation-payment-calculation 301
+/blog/personal-rehabilitation-*-군산-익산-거주자의-전주-상담-준비 /blog/jeonju-personal-rehabilitation-lawyer-guide 301
+/blog/personal-rehabilitation-*-채권자-독촉-연락을-받은-경우 /blog/personal-rehabilitation-seizure-response 301
+
+# Also catch explicit .html requests retained in old links.
+/blog/personal-rehabilitation-*-개인회생-신청-전-소득자료-정리.html /blog/personal-rehabilitation-income-check 301
+/blog/personal-rehabilitation-*-최근-대출이-있을-때-개인회생-준비.html /blog/personal-rehabilitation-recent-loan 301
+/blog/personal-rehabilitation-*-급여압류-전후-개인회생-대응.html /blog/personal-rehabilitation-seizure-response 301
+/blog/personal-rehabilitation-*-전주-개인회생-상담-전-준비서류.html /blog/jeonju-personal-rehabilitation-lawyer-guide 301
+/blog/personal-rehabilitation-*-배우자-재산이-있는-경우-확인할-점.html /blog/personal-rehabilitation-spouse-property 301
+/blog/personal-rehabilitation-*-자영업자-개인회생-매출자료-정리.html /blog/self-employed-personal-rehabilitation-income 301
+/blog/personal-rehabilitation-*-카드론과-현금서비스가-많은-경우.html /blog/personal-rehabilitation-recent-loan 301
+/blog/personal-rehabilitation-*-개인회생-변제금이-정해지는-기준.html /blog/personal-rehabilitation-payment-calculation 301
+/blog/personal-rehabilitation-*-군산-익산-거주자의-전주-상담-준비.html /blog/jeonju-personal-rehabilitation-lawyer-guide 301
+/blog/personal-rehabilitation-*-채권자-독촉-연락을-받은-경우.html /blog/personal-rehabilitation-seizure-response 301

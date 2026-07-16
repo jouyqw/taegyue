@@ -20,6 +20,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Validate content quality
+        run: node scripts/validate-content-quality.mjs
+
       - name: Generate blog index, sitemap, and RSS
         run: node scripts/generate-blog-feeds.js
 
