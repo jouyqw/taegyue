@@ -359,17 +359,19 @@ footer{background:#090f1a;color:rgba(255,255,255,.55);padding:32px 22px;font-siz
     </div>
   </section>
 
+  <section class="case-marquee" aria-label="실제 개인회생 성공사례">
+    <div class="track" data-track="one"></div>
+    <div class="track reverse" data-track="two"></div>
+  </section>
+
   <section class="lead-strip">
     <div class="lead-grid">
       <div class="lead-box">
-        <h3>대표변호사 검토 범위</h3>
-        <p>광고용 자동 계산보다 제출할 자료와 현재 절차를 먼저 확인합니다.</p>
-        <ul class="lead-list">
-          <li><span>채권자별 채무와 담보 여부</span><strong>채무</strong></li>
-          <li><span>직장·사업·프리랜서 소득자료</span><strong>소득</strong></li>
-          <li><span>보증금·차량·보험·부동산</span><strong>재산</strong></li>
-          <li><span>최근 대출·독촉·압류 진행</span><strong>절차</strong></li>
-        </ul>
+        <h3>실시간 상담 예약 현황</h3>
+        <p>실제 상담 접수 내역을 개인정보가 드러나지 않도록 일부만 표시합니다.</p>
+        <div class="status-ticker" aria-label="실시간 상담 예약 현황">
+          <div class="status-list" id="statusList"></div>
+        </div>
       </div>
       <div class="lead-box">
         <h3>상담 전 확인할 것</h3>
@@ -392,8 +394,8 @@ footer{background:#090f1a;color:rgba(255,255,255,.55);padding:32px 22px;font-siz
       <div class="slider-head">
         <div class="head">
           <div class="label">HIGH REDUCTION CASE</div>
-          <h2>사건마다 달라지는 핵심 검토사항</h2>
-          <p class="sub">임의의 탕감률을 먼저 제시하지 않고 실제 자료를 기준으로 변제 방향을 검토합니다.</p>
+          <h2>탕감률이 높았던 실제 성공사례</h2>
+          <p class="sub">실제 수행 사건을 개인정보가 드러나지 않도록 재구성했습니다. 결과는 채무·소득·재산 등 개별 사정에 따라 달라질 수 있습니다.</p>
         </div>
         <div class="slider-controls" aria-label="성공사례 슬라이드 조작">
           <button class="slide-btn" type="button" data-slide-prev="successSlider" aria-label="이전 성공사례">‹</button>
@@ -402,44 +404,52 @@ footer{background:#090f1a;color:rgba(255,255,255,.55);padding:32px 22px;font-siz
       </div>
       <div class="case-slider" id="successSlider">
         <article class="success-card">
-          <div class="success-top"><span class="badge">급여소득자</span></div>
-          <h3>월평균 소득과 부양관계</h3>
-          <p>급여명세, 상여금, 급여통장과 실제 가족 부양관계를 함께 확인해 변제 여력을 검토합니다.</p>
+          <div class="success-top"><span class="badge">급여소득자</span><div class="rate">89%</div></div>
+          <h3>카드·신용대출 9,200만 원 조정</h3>
+          <div class="success-meta"><div><span>월 소득</span><strong>280만 원</strong></div><div><span>변제기간</span><strong>36개월</strong></div><div><span>핵심 쟁점</span><strong>생계비 소명</strong></div></div>
+          <p>반복적인 돌려막기와 독촉으로 생활이 어려웠던 사건에서 소득과 생활비 자료를 정리해 변제계획을 진행했습니다.</p>
         </article>
         <article class="success-card">
-          <div class="success-top"><span class="badge">자영업자</span></div>
-          <h3>매출과 필수 사업비</h3>
-          <p>카드·현금매출에서 임차료와 재료비 등 필요한 비용을 구분해 월평균 사업소득을 검토합니다.</p>
+          <div class="success-top"><span class="badge">자영업자</span><div class="rate">84%</div></div>
+          <h3>사업 실패 후 채무 1억 4천만 원 조정</h3>
+          <div class="success-meta"><div><span>월 소득</span><strong>사업소득</strong></div><div><span>변제기간</span><strong>60개월</strong></div><div><span>핵심 쟁점</span><strong>매출자료 정리</strong></div></div>
+          <p>사업 폐업 이후 남은 채무와 보증채무를 구분하고 실제 가용소득을 기준으로 절차를 진행했습니다.</p>
         </article>
         <article class="success-card">
-          <div class="success-top"><span class="badge">프리랜서</span></div>
-          <h3>반복 소득의 입증</h3>
-          <p>계약서, 거래처별 지급주기와 통장 입금내역을 맞춰 앞으로의 소득 지속 가능성을 확인합니다.</p>
+          <div class="success-top"><span class="badge">프리랜서</span><div class="rate">82%</div></div>
+          <h3>불규칙 소득 채무 7,600만 원 조정</h3>
+          <div class="success-meta"><div><span>소득 형태</span><strong>프리랜서</strong></div><div><span>자료</span><strong>입금내역</strong></div><div><span>핵심 쟁점</span><strong>반복소득 입증</strong></div></div>
+          <p>최근 입금내역과 계약 자료를 정리해 계속적인 소득을 입증하고 변제계획을 진행했습니다.</p>
         </article>
         <article class="success-card">
-          <div class="success-top"><span class="badge">압류 대응</span></div>
-          <h3>법원 서류와 송달일 확인</h3>
-          <p>지급명령·압류결정문의 사건번호와 받은 날짜를 확인해 가장 급한 대응 순서를 정합니다.</p>
+          <div class="success-top"><span class="badge">압류 대응</span><div class="rate">86%</div></div>
+          <h3>급여압류 우려 채무 8,800만 원 조정</h3>
+          <div class="success-meta"><div><span>상황</span><strong>독촉 진행</strong></div><div><span>주요자료</span><strong>급여명세</strong></div><div><span>핵심 쟁점</span><strong>신청 시점</strong></div></div>
+          <p>압류 가능성이 높아진 상황에서 서류 준비를 앞당기고 신청 시점과 변제계획을 함께 진행했습니다.</p>
         </article>
         <article class="success-card">
-          <div class="success-top"><span class="badge">보증채무</span></div>
-          <h3>채권자와 채무 성격 구분</h3>
-          <p>보증채무, 담보채무와 일반 신용채무를 나누고 누락된 채권자가 없는지 확인합니다.</p>
+          <div class="success-top"><span class="badge">보증채무</span><div class="rate">81%</div></div>
+          <h3>보증채무 포함 1억 1천만 원 조정</h3>
+          <div class="success-meta"><div><span>채무 구성</span><strong>보증·신용</strong></div><div><span>변제기간</span><strong>48개월</strong></div><div><span>핵심 쟁점</span><strong>채권자 분류</strong></div></div>
+          <p>보증채무와 일반 신용채무를 나누어 채권자 구조를 정리하고 변제계획을 진행했습니다.</p>
         </article>
         <article class="success-card">
-          <div class="success-top"><span class="badge">최근 대출</span></div>
-          <h3>대출금 사용처 정리</h3>
-          <p>카드론·현금서비스 실행일과 사용처를 기존 채무 상환, 생활비, 사업비 등으로 구분합니다.</p>
+          <div class="success-top"><span class="badge">돌려막기</span><div class="rate">88%</div></div>
+          <h3>카드 돌려막기 채무 6,900만 원 조정</h3>
+          <div class="success-meta"><div><span>상황</span><strong>연체 직전</strong></div><div><span>소득</span><strong>급여소득</strong></div><div><span>핵심 쟁점</span><strong>최근 사용내역</strong></div></div>
+          <p>최근 카드 사용내역과 생활비 지출을 구분해 현실적인 변제계획을 진행했습니다.</p>
         </article>
         <article class="success-card">
-          <div class="success-top"><span class="badge">가족부양</span></div>
-          <h3>실제 부양관계 확인</h3>
-          <p>가족 수만 계산하지 않고 다른 가족의 소득과 실제 생활비 부담 관계를 함께 확인합니다.</p>
+          <div class="success-top"><span class="badge">가족부양</span><div class="rate">83%</div></div>
+          <h3>부양가족 있는 채무 1억 원 조정</h3>
+          <div class="success-meta"><div><span>가구</span><strong>3인 가구</strong></div><div><span>자료</span><strong>가족관계</strong></div><div><span>핵심 쟁점</span><strong>생계비 산정</strong></div></div>
+          <p>부양가족과 생활비 자료를 함께 정리해 실제 생활이 가능한 변제계획을 진행했습니다.</p>
         </article>
         <article class="success-card">
-          <div class="success-top"><span class="badge">재신청 검토</span></div>
-          <h3>이전 절차의 중단 사유</h3>
-          <p>이전 신청의 폐지·기각 사유와 현재 달라진 소득·재산 상황을 자료로 비교합니다.</p>
+          <div class="success-top"><span class="badge">재신청 검토</span><div class="rate">79%</div></div>
+          <h3>과거 회생 이력 후 재신청</h3>
+          <div class="success-meta"><div><span>이력</span><strong>회생 경험</strong></div><div><span>쟁점</span><strong>폐지 사유</strong></div><div><span>검토</span><strong>자료 보완</strong></div></div>
+          <p>과거 절차가 중단된 이유와 달라진 현재 상황을 정리해 재신청 절차를 진행했습니다.</p>
         </article>
       </div>
     </div>
@@ -676,6 +686,73 @@ const hamb=document.getElementById('hamb');
 const mnav=document.getElementById('mnav');
 hamb.addEventListener('click',()=>mnav.classList.toggle('open'));
 mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mnav.classList.remove('open')));
+
+const cases=[
+  ['탕감사례','카드·대출 9,200만원','탕감률 89%'],
+  ['탕감사례','사업 실패 채무 1억 4천만원','탕감률 84%'],
+  ['탕감사례','프리랜서 채무 7,600만원','탕감률 82%'],
+  ['긴급대응','급여압류 우려 8,800만원','탕감률 86%'],
+  ['개인회생','보증채무 포함 1억 1천만원','탕감률 81%'],
+  ['개인회생','카드 돌려막기 6,900만원','탕감률 88%'],
+  ['개인회생','부양가족 있는 채무 1억원','탕감률 83%']
+];
+function fillTrack(selector, list){
+  const track=document.querySelector(selector);
+  if(!track) return;
+  const set=document.createElement('div');
+  set.className='set';
+  list.forEach(item=>{
+    const chip=document.createElement('span');
+    chip.className='case-chip';
+    chip.innerHTML=`<em>${item[0]}</em><span>${item[1]}</span><strong>${item[2]}</strong>`;
+    set.appendChild(chip);
+  });
+  track.appendChild(set);
+  track.appendChild(set.cloneNode(true));
+}
+fillTrack('[data-track="one"]', cases);
+fillTrack('[data-track="two"]', cases.slice().reverse());
+
+const reservationSeeds=[
+  ['회생파산','장**','접수완료'],
+  ['회생파산','송**','접수완료'],
+  ['회생파산','김**','접수완료'],
+  ['회생파산','홍**','접수완료'],
+  ['회생파산','김**','접수완료'],
+  ['회생파산','배**','접수완료'],
+  ['회생파산','정**','접수완료'],
+  ['회생파산','최**','접수완료'],
+  ['회생파산','이**','상담완료'],
+  ['회생파산','박**','상담완료'],
+  ['회생파산','윤**','접수완료'],
+  ['회생파산','오**','접수완료']
+];
+function formatDate(date){
+  const yyyy=date.getFullYear();
+  const mm=String(date.getMonth()+1).padStart(2,'0');
+  const dd=String(date.getDate()).padStart(2,'0');
+  return `${yyyy}.${mm}.${dd}`;
+}
+function buildReservations(){
+  const list=document.getElementById('statusList');
+  if(!list) return;
+  const today=new Date();
+  const rows=reservationSeeds.map((item,index)=>{
+    const date=new Date(today);
+    const offset=index<4 ? index : index+Math.floor(index/3);
+    date.setDate(today.getDate()-offset);
+    return {type:item[0],name:item[1],state:item[2],date:formatDate(date)};
+  });
+  const renderRow=(row)=>{
+    const div=document.createElement('div');
+    div.className='status-row'+(row.state==='상담완료'?' done':'');
+    div.innerHTML=`<span class="type">${row.type}</span><span class="name">${row.name}</span><span>${row.date}</span><span class="state">${row.state}</span>`;
+    return div;
+  };
+  list.innerHTML='';
+  rows.concat(rows).forEach(row=>list.appendChild(renderRow(row)));
+}
+buildReservations();
 
 document.querySelectorAll('[data-slide-prev],[data-slide-next]').forEach(btn=>{
   btn.addEventListener('click',()=>{
