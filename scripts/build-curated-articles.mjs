@@ -6,7 +6,7 @@ const published = '2026-07-16';
 const articles = [
   {
     slug: 'personal-rehabilitation-income-check',
-    title: '개인회생 소득자료 준비법｜직장인·자영업자·프리랜서별 체크리스트',
+    title: '전주개인회생 소득자료 준비법｜직장인·자영업자·프리랜서 체크리스트',
     description: '전주 개인회생 상담 전 직장인, 자영업자, 프리랜서가 준비할 소득자료와 통장 입금내역 정리 방법을 구분해 안내합니다.',
     summary: '소득자료의 목적은 단순히 월급 액수를 보여주는 것이 아니라 앞으로도 반복적인 소득이 생긴다는 점과 실제 월평균 소득을 설명하는 데 있습니다.',
     sections: [
@@ -19,7 +19,7 @@ const articles = [
   },
   {
     slug: 'personal-rehabilitation-recent-loan',
-    title: '최근 대출이 있는 개인회생｜사용처 정리와 상담 전 확인사항',
+    title: '전주개인회생 최근 대출이 있을 때｜사용처 정리와 확인사항',
     description: '개인회생 신청 전 최근 대출, 카드론, 현금서비스가 있다면 사용처와 채무 발생 경위를 어떻게 정리할지 안내합니다.',
     summary: '최근 대출이 있다는 이유만으로 개인회생이 일률적으로 불가능한 것은 아니지만, 대출 시점·사용처·현재 남은 재산을 구체적으로 설명할 준비가 필요합니다.',
     sections: [
@@ -32,7 +32,7 @@ const articles = [
   },
   {
     slug: 'personal-rehabilitation-seizure-response',
-    title: '급여압류·통장압류가 걱정될 때 개인회생 준비 순서',
+    title: '전주개인회생 급여압류·통장압류 대응｜준비 순서',
     description: '독촉, 지급명령, 급여압류와 통장압류 단계에서 개인회생 상담 전 확인할 문서와 대응 순서를 정리합니다.',
     summary: '독촉을 받고 있다는 사실만으로 같은 대응을 하는 것은 아닙니다. 단순 연체인지, 지급명령이나 소장이 도착했는지, 이미 압류가 진행됐는지를 먼저 구분해야 합니다.',
     sections: [
@@ -45,7 +45,7 @@ const articles = [
   },
   {
     slug: 'personal-rehabilitation-spouse-property',
-    title: '배우자 재산이 있는 경우 개인회생에서 확인할 점',
+    title: '전주개인회생 배우자 재산이 있을 때 확인할 점',
     description: '배우자 명의 아파트, 전세보증금, 차량, 보험이 있을 때 개인회생 상담에서 확인하는 취득 경위와 자금 흐름을 안내합니다.',
     summary: '배우자 명의라는 이유만으로 모두 신청인의 재산이 되는 것도, 전혀 관계없는 재산이 되는 것도 아닙니다. 취득 시기와 실제 자금 부담 관계를 자료로 확인해야 합니다.',
     sections: [
@@ -58,7 +58,7 @@ const articles = [
   },
   {
     slug: 'self-employed-personal-rehabilitation-income',
-    title: '전주 자영업자 개인회생｜매출과 사업비 정리 방법',
+    title: '전주개인회생 자영업자편｜매출과 사업비 정리 방법',
     description: '자영업자 개인회생에서 카드매출, 현금매출, 사업용 계좌와 사업비를 구분해 월평균 소득을 정리하는 방법입니다.',
     summary: '자영업자는 매출 전체가 소득이 아닙니다. 실제 매출에서 영업에 필요한 비용을 구분하고, 그 결과가 세금자료와 통장 흐름에 맞는지 보여줘야 합니다.',
     sections: [
@@ -71,7 +71,7 @@ const articles = [
   },
   {
     slug: 'personal-rehabilitation-payment-calculation',
-    title: '개인회생 변제금은 어떻게 정해질까｜소득·생계비·재산 체크',
+    title: '전주개인회생 변제금 기준｜소득·생계비·재산 체크',
     description: '개인회생 예상 변제금을 검토할 때 소득, 생계비, 재산가치, 부양가족과 최근 거래를 함께 보는 이유를 설명합니다.',
     summary: '예상 변제금은 채무액에 일정 비율을 곱해 정하지 않습니다. 월 소득과 생계비만이 아니라 재산가치, 부양가족, 채무 발생 경위 등 여러 자료를 함께 검토합니다.',
     sections: [
