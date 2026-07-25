@@ -1,0 +1,21 @@
+{
+  "note": "전주개인회생 일일 발행 주제 후보입니다. blog/에 유사 슬러그가 있으면 건너뛰고, 없으면 새로 씁니다. 지역(전주/익산/군산)과 상황을 섞어 매일 다르게 구성하세요.",
+  "keyword": "전주개인회생",
+  "topics": [
+    { "slug": "jeonju-personal-rehabilitation-after-approval", "title": "인가 후 관리" },
+    { "slug": "jeonju-personal-rehabilitation-repayment-change", "title": "변제계획 변경" },
+    { "slug": "jeonju-personal-rehabilitation-vs-bankruptcy", "title": "개인회생과 파산 비교" },
+    { "slug": "jeonju-personal-rehabilitation-job-change", "title": "이직·소득 변동 시 대응" },
+    { "slug": "jeonju-personal-rehabilitation-credit-recovery", "title": "면책 후 신용 회복" },
+    { "slug": "jeonju-personal-rehabilitation-guarantor", "title": "보증채무가 있을 때" },
+    { "slug": "jeonju-personal-rehabilitation-student-loan", "title": "학자금·소액대출 처리" },
+    { "slug": "jeonju-personal-rehabilitation-car-ownership", "title": "차량 보유와 회생" },
+    { "slug": "iksan-personal-rehabilitation-consultation-guide", "title": "익산 거주자 상담 준비" },
+    { "slug": "gunsan-personal-rehabilitation-consultation-guide", "title": "군산 거주자 상담 준비" },
+    { "slug": "jeonju-personal-rehabilitation-freelancer", "title": "프리랜서 소득 정리" },
+    { "slug": "jeonju-personal-rehabilitation-housewife-income", "title": "주부·무소득자 신청 가능성" },
+    { "slug": "jeonju-personal-rehabilitation-tax-arrears", "title": "세금 체납이 있을 때" },
+    { "slug": "jeonju-personal-rehabilitation-rejection-reason", "title": "기각·불인가 사유" },
+    { "slug": "jeonju-personal-rehabilitation-living-cost-standard", "title": "생계비 인정 기준" }
+  ]
+}
