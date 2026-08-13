@@ -12,15 +12,43 @@
    - 후보가 소진되면 실제 상담에서 자주 나오는 새 주제를 직접 만듭니다(슬러그 중복 금지).
 4. 각 글마다 `content/drafts/<slug>.json` 초안을 작성합니다(아래 형식·기준).
 5. 렌더링: `node scripts/author/render-article.mjs content/drafts/<slug>.json`
-6. 피드 재생성: `node scripts/generate-blog-feeds.js`
-7. 품질 검증: `node scripts/validate-content-quality.mjs` — **반드시 통과**.
+6. 품질 검증: `node scripts/validate-content-quality.mjs` — **반드시 통과**.
+7. 전체 재빌드: `node scripts/build-all.mjs`
 8. 커밋 & 푸시:
    ```
    git add cloudflare_pages_upload content/drafts
    git commit -m "전주개인회생 칼럼 발행: <오늘 날짜>"
    git push
    ```
-   push 하면 Cloudflare 자동 배포 + GitHub Actions가 피드 갱신·검색엔진 제출을 처리합니다.
+   push 하면 Cloudflare 자동 배포 + GitHub Actions가 후처리·허브·피드 갱신과 검색엔진 제출을 처리합니다.
+
+> **발행 페이스**: 하루 3편씩 몰아서 올리지 마세요. 짧은 기간에 대량 발행하면 구글의
+> 대량 생성 콘텐츠(scaled content abuse) 신호로 잡힐 수 있습니다. **주 2~3편**으로 나눠
+> 발행하고, 남는 시간은 기존 글 보강에 쓰는 편이 순위에 유리합니다.
+
+## 빌드 파이프라인
+
+`scripts/build-all.mjs` 가 아래를 순서대로 실행합니다. 순서가 중요합니다.
+
+| 순서 | 스크립트 | 하는 일 |
+|---|---|---|
+| 1 | `build-pages.mjs` | 핵심 랜딩 페이지 5종(`/jeonju-personal-rehabilitation/`, `-cost/`, `/jeonju-personal-bankruptcy/`, `/lawyer/`, `/location/`) |
+| 2 | `seo-enhance.mjs` | 칼럼 전편에 관련글 8개·허브 링크·발행일 `<time>`·BreadcrumbList·트위터카드 주입 (**멱등**) |
+| 3 | `build-hubs.mjs` | 지역 허브(`/blog/jeonju|iksan|gunsan/`)와 주제 허브(`/blog/topic/*/`) |
+| 4 | `generate-blog-feeds.js` | 칼럼 목록·sitemap·RSS |
+
+- 공용 헤더·푸터·스타일·스키마는 `scripts/lib/site.mjs` 한 곳에 있습니다.
+- 지역·주제 분류와 관련글 선정 규칙은 `scripts/lib/taxonomy.mjs` 에 있습니다.
+  새 주제 허브를 추가하려면 `TOPICS` 배열에 항목을 넣고, `generate-blog-feeds.js` 의
+  `TOPIC_KEYS` 에도 같은 키를 추가해 sitemap에 실리도록 하세요.
+- `seo-enhance.mjs` 는 `<!-- seo-enhance:start -->` ~ `:end` 마커 구간만 교체하므로
+  몇 번을 다시 돌려도 결과가 같습니다. 본문에 손으로 걸어둔 `/blog/` 링크는 중복 추천에서 제외됩니다.
+
+## 이미지
+
+`kim-gitae-photo.webp`, `kim-gitae-photo-620.webp`, `taengyu-logo.webp`, `og-cover.jpg`(1200×630)는
+저장소에 커밋된 산출물입니다. 원본 사진을 교체할 때만 다시 만들면 되고, 그때는 `sharp` 로
+같은 파일명·규격으로 재생성해 주세요. OG 카드는 세로 인물사진이 아니라 반드시 `og-cover.jpg` 를 씁니다.
 
 ## 초안 JSON 형식
 

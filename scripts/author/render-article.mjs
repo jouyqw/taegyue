@@ -75,8 +75,8 @@ export function renderArticle(draft) {
 <meta name="description" content="${esc(draft.description)}"><meta name="author" content="김기태 변호사">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="${url}">
-<meta property="og:type" content="article"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="${esc(draft.title)}"><meta property="og:description" content="${esc(draft.description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${site}/kim-gitae-photo.jpg">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(draft.title)}"><meta name="twitter:description" content="${esc(draft.description)}"><meta name="twitter:image" content="${site}/kim-gitae-photo.jpg">
+<meta property="og:type" content="article"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="${esc(draft.title)}"><meta property="og:description" content="${esc(draft.description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${site}/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(draft.title)}"><meta name="twitter:description" content="${esc(draft.description)}"><meta name="twitter:image" content="${site}/og-cover.jpg">
 <style>${STYLE}</style>
 <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head><body>

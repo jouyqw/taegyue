@@ -18,9 +18,20 @@
 - 인가 후 변제 유지·변경, 완제와 면책
 
 ## 주요 링크
+- 전주개인회생 종합 안내(신청자격·변제금·기간·절차·서류): https://taeandkyujeonju.com/jeonju-personal-rehabilitation/
+- 전주개인회생 비용·수임료: https://taeandkyujeonju.com/jeonju-personal-rehabilitation-cost/
+- 전주개인파산 안내: https://taeandkyujeonju.com/jeonju-personal-bankruptcy/
+- 김기태 대표변호사 소개: https://taeandkyujeonju.com/lawyer/
+- 오시는 길·전주지방법원 안내: https://taeandkyujeonju.com/location/
 - 칼럼 전체보기(검색·지역별 필터): https://taeandkyujeonju.com/blog/
+- 지역별 칼럼: https://taeandkyujeonju.com/blog/jeonju/ · https://taeandkyujeonju.com/blog/iksan/ · https://taeandkyujeonju.com/blog/gunsan/
+- 주제별 칼럼: /blog/topic/repayment/ (변제금) · /blog/topic/enforcement/ (압류 대응) · /blog/topic/income/ (소득 증빙) · /blog/topic/property/ (재산·보증금) · /blog/topic/debt-type/ (채무 유형별) · /blog/topic/procedure/ (절차·서류)
 - 사이트맵: https://taeandkyujeonju.com/sitemap.xml
 - RSS: https://taeandkyujeonju.com/rss.xml
+
+## 관할 법원
+- 전주지방법원 본원(전북 전주시 덕진구 가인로 33): 전주시, 김제시, 완주군, 임실군, 진안군, 무주군
+- 전주지방법원 군산지원: 군산시, 익산시
 
 ## 인용 안내
 - 각 칼럼은 개인회생 절차에 관한 일반적인 정보 제공을 위한 것이며, 개별 사건의 결과를 보장하지 않습니다.

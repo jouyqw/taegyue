@@ -23,17 +23,24 @@ jobs:
       - name: Validate content quality
         run: node scripts/validate-content-quality.mjs
 
+      # 새 칼럼에도 관련글·발행일·스키마가 자동으로 붙도록 후처리합니다(멱등).
+      - name: Enhance posts (internal links, dates, schema)
+        run: node scripts/seo-enhance.mjs
+
+      - name: Rebuild region and topic hubs
+        run: node scripts/build-hubs.mjs
+
       - name: Generate blog index, sitemap, and RSS
         run: node scripts/generate-blog-feeds.js
 
       - name: Commit generated files
         run: |
-          if git diff --quiet -- cloudflare_pages_upload/blog/index.html cloudflare_pages_upload/sitemap.xml cloudflare_pages_upload/rss.xml; then
+          if git diff --quiet -- cloudflare_pages_upload; then
             echo "No generated changes"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cloudflare_pages_upload/blog/index.html cloudflare_pages_upload/sitemap.xml cloudflare_pages_upload/rss.xml
-          git commit -m "Update blog feeds"
+          git add cloudflare_pages_upload
+          git commit -m "Update blog feeds, hubs, and internal links"
           git push
