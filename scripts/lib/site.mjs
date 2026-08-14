@@ -164,7 +164,7 @@ export const legalServiceLd = () => ({
     streetAddress: '완산구 홍산남로 19 즐거운빌딩 3층 302호',
     addressLocality: '전주시',
     addressRegion: '전북특별자치도',
-    postalCode: '55040',
+    // TODO(운영자 확인 필요): 실제 우편번호를 postalCode 로 채우면 로컬 검색에 도움이 됩니다.
     addressCountry: 'KR',
   },
   areaServed: ['전주시', '완주군', '김제시', '익산시', '군산시', '임실군', '진안군', '무주군', '전북특별자치도'].map((n) => ({ '@type': 'AdministrativeArea', name: n })),
