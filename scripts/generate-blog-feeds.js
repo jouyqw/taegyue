@@ -206,7 +206,11 @@ const staticUrls = [
   { loc: `${site}/blog/`, changefreq: 'weekly', priority: '0.8' },
   ...REGIONS.map((r) => ({ loc: `${site}/blog/${r.key}/`, changefreq: 'weekly', priority: '0.8' })),
   ...TOPIC_KEYS.map((k) => ({ loc: `${site}/blog/topic/${k}/`, changefreq: 'weekly', priority: '0.7' })),
-].map((u) => ({ ...u, lastmod: today }));
+// lastmod 는 빌드 시각이 아니라 "최신 글 날짜"를 씁니다. 홈·허브·랜딩은 모두 칼럼을 끌어다 쓰므로
+// 실제 갱신 시점과 대체로 일치하고, 무엇보다 결정적입니다. today 를 쓰면 내용이 그대로여도 매일
+// diff 가 생겨 (1) Actions 가 빈 커밋을 만들고 (2) Cloudflare 가 같은 내용을 재배포하며
+// (3) 검색엔진이 "매일 갱신된다"는 거짓 신호를 받아 lastmod 자체를 무시하게 됩니다.
+].map((u) => ({ ...u, lastmod: (posts[0] && posts[0].lastmod) || today }));
 
 const sitemapUrls = [
   ...staticUrls,
@@ -246,7 +250,9 @@ const rss = [
   `    <link>${site}/blog/</link>`,
   '    <description>전주개인회생, 익산개인회생, 군산개인회생과 채무조정 법률칼럼</description>',
   '    <language>ko</language>',
-  `    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>`,
+  // 실행 시각이 아니라 최신 글 날짜를 씁니다. 실행 시각을 쓰면 내용이 그대로여도 매 빌드마다
+  // diff 가 생겨, Actions 가 무의미한 커밋을 만들고 Cloudflare 가 같은 내용을 두 번 배포합니다.
+  `    <lastBuildDate>${new Date(`${(posts[0] && posts[0].date) || today}T00:00:00+09:00`).toUTCString()}</lastBuildDate>`,
   rssItems,
   '  </channel>',
   '</rss>',
