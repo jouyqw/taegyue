@@ -134,6 +134,8 @@ export const header = (active = '') => {
 <a class="brand" href="/"><img src="/taengyu-logo.png" alt="${FIRM} 로고" width="40" height="40" decoding="async"><span><span class="brand-en">TAE &amp; KYU LAW</span><span class="brand-kr">${FIRM} 전주개인회생</span></span></a>
 <nav class="nav" aria-label="주요 메뉴">
 ${item('/jeonju-personal-rehabilitation/', '전주개인회생')}
+${item('/iksan-personal-rehabilitation/', '익산')}
+${item('/gunsan-personal-rehabilitation/', '군산')}
 ${item('/jeonju-personal-rehabilitation-cost/', '비용')}
 ${item('/jeonju-personal-bankruptcy/', '개인파산')}
 ${item('/lawyer/', '변호사 소개')}
@@ -146,7 +148,7 @@ ${item('/blog/', '칼럼')}
 export const footer = () => `<footer class="sitefoot"><div class="wrap">
 <div class="foot-grid">
 <div><b>${FIRM}</b><br>대표변호사 ${LAWYER}<br>(${POSTAL}) ${ADDRESS}<br>대표전화 <a href="tel:${PHONE}">${PHONE}</a><br>24시간 상담 접수</div>
-<div><b>주요 안내</b><br><a href="/jeonju-personal-rehabilitation/">전주개인회생</a> · <a href="/jeonju-personal-rehabilitation-cost/">개인회생 비용</a><br><a href="/jeonju-personal-bankruptcy/">전주개인파산</a> · <a href="/blog/">법률칼럼</a><br><a href="/lawyer/">변호사 소개</a> · <a href="/location/">오시는 길</a></div>
+<div><b>주요 안내</b><br><a href="/jeonju-personal-rehabilitation/">전주개인회생</a> · <a href="/iksan-personal-rehabilitation/">익산개인회생</a> · <a href="/gunsan-personal-rehabilitation/">군산개인회생</a><br><a href="/jeonju-personal-rehabilitation-cost/">개인회생 비용</a><br><a href="/jeonju-personal-bankruptcy/">전주개인파산</a> · <a href="/blog/">법률칼럼</a><br><a href="/lawyer/">변호사 소개</a> · <a href="/location/">오시는 길</a></div>
 <div><b>지역별 칼럼</b><br><a href="/blog/jeonju/">전주개인회생</a> · <a href="/blog/iksan/">익산개인회생</a> · <a href="/blog/gunsan/">군산개인회생</a><br>전주 완산구·덕진구, 완주·김제·임실·진안·무주<br><a href="https://taeandkyu.com/" rel="noopener">전주변호사 법무법인 태앤규 본원</a></div>
 </div>
 <!-- TODO(운영자 확인 필요): 변호사 등록번호를 아래 줄에 추가해 주세요. -->
@@ -238,7 +240,7 @@ export const sideCta = (extraLinks = []) => `<aside class="side">
 <a class="btn ghost" href="${KAKAO}" target="_blank" rel="noopener">카카오톡 상담</a></div>
 <div class="side-card"><h3>${LAWYER} 대표변호사</h3><p>변호사 17년 · ${BAR} · 前 전북경찰청 이의심사위원. 전주·완주·김제·익산·군산 채무자의 개인회생·개인파산 사건을 직접 검토합니다.</p><a class="btn line" href="/lawyer/">변호사 소개 보기</a></div>
 <div class="side-card"><h3>함께 보면 좋은 안내</h3><ul class="side-links">
-${[...extraLinks, { href: '/jeonju-personal-rehabilitation/', label: '전주개인회생 종합 안내' }, { href: '/jeonju-personal-rehabilitation-cost/', label: '개인회생 비용·수임료' }, { href: '/jeonju-personal-bankruptcy/', label: '전주개인파산 안내' }, { href: '/blog/', label: '개인회생 법률칼럼' }, { href: '/location/', label: '오시는 길 · 전주지방법원' }]
+${[...extraLinks, { href: '/jeonju-personal-rehabilitation/', label: '전주개인회생 종합 안내' }, { href: '/iksan-personal-rehabilitation/', label: '익산개인회생 안내' }, { href: '/gunsan-personal-rehabilitation/', label: '군산개인회생 안내' }, { href: '/jeonju-personal-rehabilitation-cost/', label: '개인회생 비용·수임료' }, { href: '/jeonju-personal-bankruptcy/', label: '전주개인파산 안내' }, { href: '/blog/', label: '개인회생 법률칼럼' }, { href: '/location/', label: '오시는 길 · 전주지방법원' }]
     .filter((l, i, arr) => arr.findIndex((x) => x.href === l.href) === i)
     .map((l) => `<li><a href="${l.href}">${esc(l.label)}</a></li>`).join('')}
 </ul></div></aside>`;

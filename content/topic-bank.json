@@ -1,21 +1,61 @@
 {
-  "note": "전주개인회생 일일 발행 주제 후보입니다. blog/에 유사 슬러그가 있으면 건너뛰고, 없으면 새로 씁니다. 지역(전주/익산/군산)과 상황을 섞어 매일 다르게 구성하세요.",
-  "keyword": "전주개인회생",
+  "note": "전주·익산·군산 개인회생 칼럼 주제 후보입니다. cloudflare_pages_upload/blog/ 에 같은 슬러그가 있으면 건너뛰고, 없으면 새로 씁니다. 세 지역 키워드(전주개인회생·익산개인회생·군산개인회생)가 목표이므로 지역을 골고루 순환시키세요. angle 은 그 글에서만 다룰 고유 각도이며, 다른 글과 내용이 겹치지 않게 하는 장치입니다(유사도 검증 통과 목적).",
+  "keyword": "전주개인회생, 익산개인회생, 군산개인회생",
+  "rotation": "발행할 때마다 jeonju → iksan → gunsan 순으로 지역을 바꾸세요. 같은 지역이 연달아 나오지 않게 합니다.",
   "topics": [
-    { "slug": "jeonju-personal-rehabilitation-after-approval", "title": "인가 후 관리" },
-    { "slug": "jeonju-personal-rehabilitation-repayment-change", "title": "변제계획 변경" },
-    { "slug": "jeonju-personal-rehabilitation-vs-bankruptcy", "title": "개인회생과 파산 비교" },
-    { "slug": "jeonju-personal-rehabilitation-job-change", "title": "이직·소득 변동 시 대응" },
-    { "slug": "jeonju-personal-rehabilitation-credit-recovery", "title": "면책 후 신용 회복" },
-    { "slug": "jeonju-personal-rehabilitation-guarantor", "title": "보증채무가 있을 때" },
-    { "slug": "jeonju-personal-rehabilitation-student-loan", "title": "학자금·소액대출 처리" },
-    { "slug": "jeonju-personal-rehabilitation-car-ownership", "title": "차량 보유와 회생" },
-    { "slug": "iksan-personal-rehabilitation-consultation-guide", "title": "익산 거주자 상담 준비" },
-    { "slug": "gunsan-personal-rehabilitation-consultation-guide", "title": "군산 거주자 상담 준비" },
-    { "slug": "jeonju-personal-rehabilitation-freelancer", "title": "프리랜서 소득 정리" },
-    { "slug": "jeonju-personal-rehabilitation-housewife-income", "title": "주부·무소득자 신청 가능성" },
-    { "slug": "jeonju-personal-rehabilitation-tax-arrears", "title": "세금 체납이 있을 때" },
-    { "slug": "jeonju-personal-rehabilitation-rejection-reason", "title": "기각·불인가 사유" },
-    { "slug": "jeonju-personal-rehabilitation-living-cost-standard", "title": "생계비 인정 기준" }
+    { "slug": "jeonju-personal-rehabilitation-rejection-reason", "title": "전주개인회생 기각 사유", "angle": "기각과 폐지의 차이, 전주지방법원에서 자주 지적되는 항목" },
+
+    { "slug": "jeonju-personal-rehabilitation-dependent-scope", "title": "부양가족 인정 범위", "angle": "따로 사는 부모, 성년 자녀, 배우자 소득이 있을 때 생계비 계산" },
+    { "slug": "iksan-personal-rehabilitation-dual-income", "title": "맞벌이 부부의 소득 합산", "angle": "부부 각자 채무가 있을 때 따로 신청할지 함께 볼지" },
+    { "slug": "gunsan-personal-rehabilitation-shipbuilding", "title": "조선·자동차 협력업체 종사자", "angle": "구조조정·휴업으로 소득이 급변한 이력의 소명" },
+    { "slug": "jeonju-personal-rehabilitation-farmer-income", "title": "농업소득이 있을 때", "angle": "수확기 편중 소득, 농지·농기계의 청산가치, 직불금 처리" },
+    { "slug": "iksan-personal-rehabilitation-shift-allowance", "title": "교대근무 수당과 성과급", "angle": "월별 편차가 큰 수당을 평균 소득에 어떻게 반영하는가" },
+    { "slug": "gunsan-personal-rehabilitation-fishery-income", "title": "어업·수산업 소득", "angle": "조업 시기에 몰리는 수입과 선박·어구의 재산 평가" },
+
+    { "slug": "jeonju-personal-rehabilitation-jeonse-fraud", "title": "전세사기 피해와 개인회생", "angle": "떼인 보증금을 재산으로 볼지, 전세대출이 남았을 때" },
+    { "slug": "iksan-personal-rehabilitation-high-interest-loan", "title": "대부업 고금리 채무", "angle": "법정이자 초과분 정리와 채권 양도가 반복된 경우" },
+    { "slug": "gunsan-personal-rehabilitation-collection-agency", "title": "추심업체로 채권이 넘어갔을 때", "angle": "양수인 확인, 채권자 목록에 누구를 적어야 하는가" },
+    { "slug": "jeonju-personal-rehabilitation-statute-limitation", "title": "소멸시효가 지난 오래된 빚", "angle": "시효 완성 채권을 목록에 넣을지, 갑자기 온 지급명령 대응" },
+    { "slug": "iksan-personal-rehabilitation-mobile-payment", "title": "휴대폰 소액결제·통신채무", "angle": "통신요금 연체와 소액결제가 쌓인 경우의 분류" },
+    { "slug": "gunsan-personal-rehabilitation-policy-loan", "title": "정책자금·보증재단 대출", "angle": "보증기관 대위변제 후 구상채무가 된 경우" },
+
+    { "slug": "jeonju-personal-rehabilitation-retirement-pension", "title": "퇴직연금과 퇴직금", "angle": "DC·DB형 차이, 압류금지 범위와 청산가치 반영" },
+    { "slug": "iksan-personal-rehabilitation-unemployment-benefit", "title": "실업급여를 받는 중이라면", "angle": "실업급여를 계속적 소득으로 볼 수 있는지, 수급 종료 후 계획" },
+    { "slug": "gunsan-personal-rehabilitation-industrial-accident", "title": "산재보상금이 있을 때", "angle": "요양급여·장해급여의 성격과 압류금지 재산 여부" },
+    { "slug": "jeonju-personal-rehabilitation-housing-subscription", "title": "청약통장을 유지할 수 있나", "angle": "예치금의 청산가치 반영과 해지 시점 판단" },
+    { "slug": "iksan-personal-rehabilitation-car-lease", "title": "리스·렌트 차량", "angle": "소유권이 없는 차량의 처리와 계약 유지 여부" },
+    { "slug": "gunsan-personal-rehabilitation-insurance-timing", "title": "보험을 해약해야 하나", "angle": "해약 시점이 청산가치와 생활에 미치는 영향" },
+
+    { "slug": "jeonju-personal-rehabilitation-divorce-during", "title": "개인회생 중 이혼하게 되면", "angle": "재산분할·양육비와 변제계획 변경의 관계" },
+    { "slug": "iksan-personal-rehabilitation-childbirth-during", "title": "절차 중 출산·육아휴직", "angle": "소득 감소와 부양가족 증가를 함께 반영하는 방법" },
+    { "slug": "gunsan-personal-rehabilitation-overseas", "title": "해외 취업·장기 출국", "angle": "거주지 변동 시 절차 유지와 송달 문제" },
+    { "slug": "jeonju-personal-rehabilitation-parent-support", "title": "부모를 부양하고 있다면", "angle": "동거 여부·의료비 지출의 증빙과 추가 생계비" },
+    { "slug": "iksan-personal-rehabilitation-child-guarantee", "title": "자녀 학자금 대출을 보증했다면", "angle": "보증채무의 시기와 주채무자 상태에 따른 검토" },
+    { "slug": "gunsan-personal-rehabilitation-death-during", "title": "절차 진행 중 신청인이 사망하면", "angle": "상속인의 선택지와 절차의 승계 여부" },
+
+    { "slug": "jeonju-personal-rehabilitation-construction-daily", "title": "건설 일용직 소득 증명", "angle": "현장별 단기 근무를 반복 소득으로 설명하는 방법" },
+    { "slug": "iksan-personal-rehabilitation-caregiver-income", "title": "요양보호사·간병 소득", "angle": "기관 소속과 개인 계약의 차이, 입금내역 정리" },
+    { "slug": "gunsan-personal-rehabilitation-truck-driver", "title": "화물차 지입기사", "angle": "지입료·할부·유류비를 뺀 실질 소득 산정" },
+    { "slug": "jeonju-personal-rehabilitation-delivery-rider", "title": "배달 라이더의 소득자료", "angle": "플랫폼 정산내역과 오토바이·보험료 비용 처리" },
+    { "slug": "iksan-personal-rehabilitation-private-tutor", "title": "학원강사·방문교사", "angle": "프리랜서 계약과 원천징수 3.3% 자료 정리" },
+    { "slug": "gunsan-personal-rehabilitation-unregistered-business", "title": "무등록·노점 소득", "angle": "신고자료가 없을 때 반복 소득을 보여주는 방법" },
+
+    { "slug": "jeonju-personal-rehabilitation-cash-sales-proof", "title": "현금매출을 어떻게 증명하나", "angle": "장부·거래명세와 신고자료가 다를 때의 정리" },
+    { "slug": "iksan-personal-rehabilitation-reemployment", "title": "폐업 후 재취업했다면", "angle": "사업소득에서 급여소득으로 바뀐 시점의 평균 산정" },
+    { "slug": "gunsan-personal-rehabilitation-ccrs-overlap", "title": "신용회복위원회 채무조정과 중복", "angle": "진행 중 전환 가능성과 어느 쪽이 유리한지 판단" },
+    { "slug": "jeonju-personal-rehabilitation-workout-conversion", "title": "워크아웃에서 개인회생으로", "angle": "이미 조정 중인 채무의 처리와 전환 시점" },
+    { "slug": "iksan-personal-rehabilitation-bankruptcy-to-rehab", "title": "파산을 알아보다 회생으로", "angle": "소득이 생겼을 때 절차를 바꾸는 기준" },
+    { "slug": "gunsan-personal-rehabilitation-keep-housing", "title": "살던 집을 지킬 수 있나", "angle": "담보대출이 남은 주택의 유지 조건과 한계" },
+
+    { "slug": "jeonju-personal-rehabilitation-credit-score-timeline", "title": "신용점수는 언제 회복되나", "angle": "인가·완제·면책 각 시점의 기록과 실제 회복 순서" },
+    { "slug": "iksan-personal-rehabilitation-account-opening", "title": "절차 중 계좌·카드 사용", "angle": "신규 개설 가능 여부와 생활비 계좌 관리" },
+    { "slug": "gunsan-personal-rehabilitation-employer-notice", "title": "회사에 알려지는 경우", "angle": "급여압류가 이미 있는 경우와 없는 경우의 차이" },
+    { "slug": "jeonju-personal-rehabilitation-military-public", "title": "공무원·군인·교직원", "angle": "신분상 불이익 여부와 급여 압류 시 대응" },
+    { "slug": "iksan-personal-rehabilitation-minor-children", "title": "미성년 자녀가 있을 때", "angle": "자녀 명의 예금·보험과 양육비의 처리" },
+    { "slug": "gunsan-personal-rehabilitation-elderly-parents-debt", "title": "고령 부모의 채무를 떠안았다면", "angle": "상속포기·한정승인과 개인회생의 갈림길" },
+
+    { "slug": "jeonju-personal-rehabilitation-court-schedule", "title": "전주지방법원 일정과 출석", "angle": "채권자집회 진행 방식과 실제 출석이 필요한 경우" },
+    { "slug": "iksan-personal-rehabilitation-gunsan-branch", "title": "군산지원 접수 실무", "angle": "익산 거주자가 군산지원에 접수할 때의 준비 순서" },
+    { "slug": "gunsan-personal-rehabilitation-first-consultation", "title": "첫 상담에서 정해지는 것", "angle": "상담 한 번으로 어디까지 판단이 가능한지" }
   ]
 }

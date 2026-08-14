@@ -199,6 +199,8 @@ const TOPIC_KEYS = ['enforcement', 'income', 'property', 'repayment', 'debt-type
 const staticUrls = [
   { loc: `${site}/`, changefreq: 'weekly', priority: '1.0' },
   { loc: `${site}/jeonju-personal-rehabilitation/`, changefreq: 'weekly', priority: '1.0' },
+  { loc: `${site}/iksan-personal-rehabilitation/`, changefreq: 'weekly', priority: '1.0' },
+  { loc: `${site}/gunsan-personal-rehabilitation/`, changefreq: 'weekly', priority: '1.0' },
   { loc: `${site}/jeonju-personal-rehabilitation-cost/`, changefreq: 'monthly', priority: '0.9' },
   { loc: `${site}/jeonju-personal-bankruptcy/`, changefreq: 'monthly', priority: '0.9' },
   { loc: `${site}/lawyer/`, changefreq: 'monthly', priority: '0.7' },

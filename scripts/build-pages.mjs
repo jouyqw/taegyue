@@ -628,4 +628,223 @@ write('/location/', page({
   body: locBody,
 }));
 
-console.log('\nDone. 5 pages built.');
+/* ══════════════════════════════════════════════════════════════
+   6. 익산 필러: /iksan-personal-rehabilitation/
+   ══════════════════════════════════════════════════════════════ */
+const iksanFaqs = [
+  { q: '익산에서 개인회생을 신청하면 전주지방법원인가요?', a: '아닙니다. 익산시에 주소를 둔 분의 개인회생 사건은 전주지방법원 본원이 아니라 <b>군산지원</b>이 담당합니다. 전주가 지리적으로 더 가깝게 느껴지더라도 관할은 거리로 정해지지 않습니다. 다만 사건을 접수하는 법원과 대리인의 사무소 위치는 별개이므로, 전주에 있는 변호사에게 익산 사건을 맡기는 데는 아무 문제가 없습니다.'.replace(/<\/?b>/g, '') },
+  { q: '교대근무 수당과 성과급도 소득에 들어가나요?', a: '들어갑니다. 다만 월마다 금액이 크게 달라지는 항목이라 한 달치만 보면 실제와 어긋납니다. 최근 6~12개월의 급여명세서를 같은 기준으로 정리해 평균을 내고, 야간·휴일 수당처럼 근무 형태에 따라 변동하는 부분은 별도로 표시해 두는 것이 좋습니다.' },
+  { q: '공장을 그만두고 소득이 끊겼는데 신청할 수 있나요?', a: '현재 소득이 전혀 없다면 그대로는 어렵습니다. 다만 재취업이 예정되어 있거나 다른 형태로 반복 수입이 생기고 있다면 그 자료로 검토할 수 있습니다. 소득 자체를 만들기 어려운 상황이라면 개인파산을 함께 살펴봅니다.' },
+  { q: '폐업한 가게의 채무도 개인회생으로 정리되나요?', a: '개인 명의로 부담한 사업 채무는 개인회생 대상이 됩니다. 다만 폐업 시점, 남은 재고와 시설의 처분 내역, 임차보증금 반환 여부를 함께 정리해야 하며, 세금 체납처럼 면책되지 않는 채무가 섞여 있는지도 확인해야 합니다.' },
+  { q: '익산에서 상담받으려면 꼭 방문해야 하나요?', a: '아닙니다. 전화와 카카오톡으로 상황을 먼저 확인한 뒤 서류는 사진으로 받아 검토하는 비대면 방식이 가능합니다. 방문이 필요한 시점이 되면 미리 안내드립니다.' },
+];
+
+const iksanBody = `<section class="phero"><div class="wrap">
+<span class="eyebrow">${FIRM} · 익산개인회생</span>
+<h1>익산개인회생,<br>군산지원 관할부터 확인하세요</h1>
+<p class="lead">익산 사건은 전주지방법원 본원이 아니라 군산지원이 담당합니다. 관할과 함께 제조·물류 종사자의 교대근무 수당, 폐업 후 남은 사업 채무를 어떻게 정리하는지 실무 기준으로 정리했습니다.</p>
+<div class="phero-facts">
+<div><b>군산지원</b><span>익산 사건 관할 법원</span></div>
+<div><b>원칙 36개월</b><span>변제기간(최장 60개월)</span></div>
+<div><b>중위소득 60%</b><span>생계비 산정 기준</span></div>
+<div><b>비대면 가능</b><span>방문 없이 상담 진행</span></div>
+</div>
+<div class="phero-cta"><a class="btn gold" href="tel:${PHONE}">${PHONE} 전화상담</a><a class="btn ghost" href="${KAKAO}" target="_blank" rel="noopener">카카오톡 상담</a><a class="btn ghost" href="/blog/iksan/">익산 칼럼 보기</a></div>
+</div></section>
+
+<div class="wrap">
+${crumbHtml([HOME, { name: '익산개인회생', url: `${SITE}/iksan-personal-rehabilitation/` }])}
+<div class="layout">
+<article class="main">
+${toc([
+  { id: 'court', label: '익산은 군산지원 관할' },
+  { id: 'income', label: '익산에서 자주 보는 소득 유형' },
+  { id: 'closure', label: '폐업 후 남은 사업 채무' },
+  { id: 'amount', label: '변제금이 정해지는 방식' },
+  { id: 'docs', label: '준비서류와 순서' },
+  { id: 'faq', label: '자주 묻는 질문' },
+])}
+
+<h2 id="court">익산 사건은 군산지원으로 갑니다</h2>
+<p>익산에서 상담을 오시는 분들이 가장 먼저 놀라시는 지점입니다. <strong>익산시 거주자의 개인회생 사건은 전주지방법원 본원이 아니라 군산지원이 담당합니다.</strong></p>
+<div class="table-wrap"><table>
+<thead><tr><th>거주지</th><th>담당 법원</th></tr></thead>
+<tbody>
+<tr><th>익산시</th><td>전주지방법원 <strong>군산지원</strong></td></tr>
+<tr><th>군산시</th><td>전주지방법원 군산지원</td></tr>
+<tr><th>전주시·김제시·완주군</th><td>전주지방법원 본원</td></tr>
+</tbody></table></div>
+<p>익산에 익산시법원이 따로 있지만 소액사건과 지급명령 등을 다루는 곳이고, 개인회생 사건의 접수 단위는 지원입니다. 관할은 원칙적으로 <strong>신청 당시의 주소지</strong>를 기준으로 하므로, 최근 전주나 다른 지역으로 이사했다면 전입 시점을 먼저 확인해야 합니다.</p>
+<div class="callout"><b>자주 받는 질문 하나</b><p>&ldquo;접수가 군산지원이면 군산에 있는 변호사를 찾아야 하나요?&rdquo; 아닙니다. <strong>사건 관할과 대리인 사무소 위치는 별개</strong>입니다. 개인회생은 대부분 서면으로 진행되어 이동 부담도 크지 않습니다. 익산에서 전주 사무소로 오시는 분이 많은 이유입니다.</p></div>
+
+<h2 id="income">익산 상담에서 자주 보는 소득 유형</h2>
+<h3>제조·물류 종사자의 교대근무 수당</h3>
+<p>익산은 산업단지와 물류 종사자 비중이 높습니다. 그래서 기본급보다 <strong>야간·휴일 수당과 성과급이 월 소득을 좌우하는</strong> 경우가 많습니다.</p>
+<p>여기서 실수가 자주 나옵니다. 수당이 많이 붙은 달의 급여명세서 한 장만 제출하면 실제보다 소득이 높게 잡혀 변제금이 과도해집니다. 반대로 적게 나온 달만 내면 소명을 다시 요구받습니다. <strong>최근 6~12개월을 같은 기준으로 표로 만들어</strong> 평균과 변동 폭을 함께 보여주는 것이 정확합니다.</p>
+<h3>계약직·파견직</h3>
+<p>계약 기간이 남아 있는지, 갱신 이력이 있는지가 &lsquo;계속적 소득&rsquo; 판단에 영향을 줍니다. 계약서와 갱신 내역, 4대보험 가입 이력을 함께 정리해 두세요.</p>
+<h3>자영업</h3>
+<p>매출 전체가 소득이 아닙니다. 임차료, 재료비, 인건비를 뺀 실제 가용소득이 기준입니다. 자세한 정리 방법은 <a href="/blog/self-employed-personal-rehabilitation-income">자영업자 매출자료 정리</a> 칼럼을 참고하세요.</p>
+
+<h2 id="closure">폐업하고 남은 채무가 있다면</h2>
+<p>가게나 공장을 정리한 뒤 남은 빚을 안고 오시는 경우가 많습니다. 이때 확인하는 순서는 다음과 같습니다.</p>
+<ol class="steps">
+<li><b>채무의 성격을 나눕니다</b><span>사업자 대출, 보증재단 보증부 대출, 개인 신용대출, 거래처 외상, 세금 체납을 구분합니다. 세금처럼 면책되지 않는 채무가 섞여 있으면 계획이 달라집니다.</span></li>
+<li><b>보증기관 대위변제 여부를 봅니다</b><span>보증재단이 대신 갚았다면 채권자가 은행에서 보증기관으로 바뀝니다. 채권자 목록에 누구를 적을지가 달라집니다.</span></li>
+<li><b>남은 재산을 확인합니다</b><span>임차보증금 반환 여부, 처분하지 못한 시설·재고, 차량이 청산가치에 반영됩니다.</span></li>
+<li><b>현재 소득을 정리합니다</b><span>재취업했다면 사업소득에서 급여소득으로 바뀐 시점을 기준으로 평균을 다시 잡습니다.</span></li>
+</ol>
+<div class="warn"><b>폐업 직전 거래는 특히 조심하세요</b><p>정리 과정에서 특정 거래처나 가족에게만 먼저 갚았다면 채권자 형평 문제로 지적될 수 있습니다. 임의로 정리하기 전에 상의해 주세요.</p></div>
+
+<h2 id="amount">변제금은 이렇게 정해집니다</h2>
+<p>지역과 무관하게 기준은 같습니다. <strong>월 소득에서 생계비를 뺀 금액</strong>과 <strong>재산의 청산가치</strong> 두 가지를 모두 통과해야 합니다.</p>
+<ul>
+<li>생계비는 기준 중위소득의 60%를 원칙으로 하고 가구원 수에 따라 달라집니다</li>
+<li>임차보증금·차량·보험 해약환급금은 청산가치에 반영됩니다</li>
+<li>변제기간은 원칙 36개월, 특별한 사정이 있으면 최장 60개월</li>
+</ul>
+<p>계산 구조와 예외는 <a href="/jeonju-personal-rehabilitation/#amount">개인회생 변제금 산정</a>에 자세히 정리해 두었습니다. 비용 구조는 <a href="/jeonju-personal-rehabilitation-cost/">비용 안내</a>를 참고하세요.</p>
+
+<h2 id="docs">준비서류와 순서</h2>
+<p>서류를 다 모은 다음 상담하시겠다는 분이 많은데 순서가 반대입니다. <strong>무엇이 필요한지 정한 뒤에 발급받는 편</strong>이 시간과 비용이 훨씬 적게 듭니다.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>구분</th><th>서류</th></tr></thead>
+<tbody>
+<tr><th>채무</th><td>채권자별 부채증명서, 대출약정서, 카드 명세</td></tr>
+<tr><th>소득</th><td>급여명세서 6~12개월치, 재직증명서, 원천징수영수증 / 사업자는 부가세·종합소득세 자료</td></tr>
+<tr><th>재산</th><td>임대차계약서, 자동차등록원부, 보험 해약환급금 조회, 예금 잔액증명</td></tr>
+<tr><th>가족</th><td>주민등록등본, 가족관계증명서</td></tr>
+</tbody></table></div>
+<div class="related-grid">
+<a href="/blog/iksan/"><span>익산 칼럼</span>익산개인회생 칼럼 모아보기</a>
+<a href="/blog/topic/income/"><span>주제별</span>소득 증빙 칼럼</a>
+<a href="/blog/topic/procedure/"><span>주제별</span>절차·서류 칼럼</a>
+<a href="/gunsan-personal-rehabilitation/"><span>인근 지역</span>군산개인회생 안내</a>
+</div>
+
+<h2 id="faq">자주 묻는 질문</h2>
+${faqHtml(iksanFaqs)}
+
+${ctaBand('익산개인회생, 관할부터 서류까지 한 번에 정리해 드립니다.', '채무 총액과 월 소득만 알려주셔도 신청 가능성과 방향은 잡을 수 있습니다. 방문이 어려우면 비대면으로 진행합니다.')}
+${DISCLAIMER}
+</article>
+${sideCta([{ href: '/blog/iksan/', label: '익산개인회생 칼럼' }, { href: '/gunsan-personal-rehabilitation/', label: '군산개인회생 안내' }])}
+</div></div>`;
+
+write('/iksan-personal-rehabilitation/', page({
+  path: '/iksan-personal-rehabilitation/',
+  title: '익산개인회생 신청자격·관할·변제금 안내 | 법무법인 태앤규',
+  description: '익산개인회생은 전주지방법원 군산지원 관할입니다. 교대근무 수당과 성과급의 소득 산정, 폐업 후 남은 사업 채무 정리, 변제금 기준과 준비서류를 정리했습니다.',
+  keywords: '익산개인회생, 익산개인회생변호사, 익산 개인회생 상담, 군산지원 개인회생',
+  trail: [HOME, { name: '익산개인회생', url: `${SITE}/iksan-personal-rehabilitation/` }],
+  ld: [faqLd(iksanFaqs)],
+  body: iksanBody,
+}));
+
+/* ══════════════════════════════════════════════════════════════
+   7. 군산 필러: /gunsan-personal-rehabilitation/
+   ══════════════════════════════════════════════════════════════ */
+const gunsanFaqs = [
+  { q: '군산에서 개인회생은 어디에 신청하나요?', a: '군산시 거주자의 개인회생 사건은 전주지방법원 군산지원이 담당합니다. 익산시도 같은 군산지원 관할입니다. 관할은 신청 당시 주소지를 기준으로 정해집니다.' },
+  { q: '몇 년 사이 소득이 크게 오르내렸는데 괜찮을까요?', a: '오히려 그 변동을 설명하는 것이 핵심입니다. 휴업이나 구조조정으로 소득이 줄었다면 과거 평균을 그대로 적용하기 어렵습니다. 언제 무슨 일이 있었고 현재 소득이 앞으로도 유지되는지를 근무 자료와 통장 흐름으로 연결해 보여주면 됩니다.' },
+  { q: '나이가 많아 재취업이 어려운데 개인회생이 되나요?', a: '개인회생은 계속적 소득을 전제로 합니다. 연금이나 아르바이트로 반복 수입이 있으면 검토할 수 있고, 생계비에도 못 미치는 수준이라면 개인파산 쪽을 먼저 살펴봅니다. 어느 쪽이 맞는지는 소득에서 생계비를 뺀 금액을 계산해 봐야 알 수 있습니다.' },
+  { q: '조업이나 계절에 따라 수입이 몰리는데 어떻게 계산하나요?', a: '월별 편차가 큰 소득은 연 단위 흐름으로 보는 것이 정확합니다. 성수기와 비수기를 함께 담은 최근 12개월 입금내역과 비용 자료를 정리하면 평균 산정의 근거가 됩니다.' },
+  { q: '군산에서 전주 사무소까지 가야 하나요?', a: '사건 관할은 군산지원이지만 상담과 대리는 사무소 위치와 무관합니다. 전화와 카카오톡으로 상황을 먼저 확인하고 서류는 사진으로 받아 검토하는 비대면 진행이 가능합니다.' },
+];
+
+const gunsanBody = `<section class="phero"><div class="wrap">
+<span class="eyebrow">${FIRM} · 군산개인회생</span>
+<h1>군산개인회생,<br>소득 변동을 어떻게 설명하느냐가 관건입니다</h1>
+<p class="lead">군산 상담에서 가장 자주 걸리는 지점은 채무 규모가 아니라 소득의 기복입니다. 휴업·구조조정·계절 편차로 오르내린 수입을 어떻게 자료로 설명하는지, 그리고 개인회생과 개인파산의 갈림길을 정리했습니다.</p>
+<div class="phero-facts">
+<div><b>군산지원</b><span>군산·익산 사건 관할</span></div>
+<div><b>최근 12개월</b><span>변동 소득은 연 단위로</span></div>
+<div><b>중위소득 60%</b><span>생계비 산정 기준</span></div>
+<div><b>비대면 가능</b><span>방문 없이 상담 진행</span></div>
+</div>
+<div class="phero-cta"><a class="btn gold" href="tel:${PHONE}">${PHONE} 전화상담</a><a class="btn ghost" href="${KAKAO}" target="_blank" rel="noopener">카카오톡 상담</a><a class="btn ghost" href="/blog/gunsan/">군산 칼럼 보기</a></div>
+</div></section>
+
+<div class="wrap">
+${crumbHtml([HOME, { name: '군산개인회생', url: `${SITE}/gunsan-personal-rehabilitation/` }])}
+<div class="layout">
+<article class="main">
+${toc([
+  { id: 'volatile', label: '소득이 오르내린 이력' },
+  { id: 'seasonal', label: '계절·조업 편차 소득' },
+  { id: 'choice', label: '개인회생인가 개인파산인가' },
+  { id: 'court', label: '군산지원 관할과 접수' },
+  { id: 'amount', label: '변제금과 청산가치' },
+  { id: 'faq', label: '자주 묻는 질문' },
+])}
+
+<h2 id="volatile">소득이 오르내린 이력, 숨기지 말고 설명하세요</h2>
+<p>군산에서 오시는 분들의 상담은 다른 지역과 결이 조금 다릅니다. 채무 규모 자체보다 <strong>&ldquo;최근 몇 년 사이 벌이가 크게 달라졌다&rdquo;</strong>는 사정이 먼저 나옵니다.</p>
+<p>협력업체 사정에 따른 휴업, 인력 조정, 업종 전환으로 소득이 반토막 났다가 회복되는 흐름이 통장에 그대로 남아 있는 경우가 많습니다. 이때 흔한 오해가 있습니다. <strong>&ldquo;소득이 불안정하면 신청이 어렵겠지&rdquo;</strong>라고 지레 포기하시는 것입니다.</p>
+<p>실제로는 반대입니다. 법원이 보는 것은 소득이 일정한지가 아니라 <strong>앞으로도 반복해서 들어올 것인가</strong>입니다. 변동이 있었다면 그 이유와 현재 상태를 자료로 연결하면 됩니다.</p>
+<div class="check"><b>변동 이력을 설명하는 자료</b>
+<ul><li>최근 12~24개월 월별 소득표 (같은 기준으로 작성)</li><li>휴업·전직·이직 시점과 그 사유를 알 수 있는 자료</li><li>4대보험 자격 취득·상실 이력</li><li>현재 근무 형태와 앞으로의 예상 소득</li></ul></div>
+<p>과거 평균이 현재와 크게 다르다면 <strong>과거 수치를 그대로 적용하지 않도록</strong> 근거를 붙이는 것이 중요합니다. 이 작업을 하지 않으면 실제 생활이 불가능한 변제금이 잡힐 수 있습니다.</p>
+
+<h2 id="seasonal">조업·계절에 따라 수입이 몰린다면</h2>
+<p>어업, 건설, 농산물 유통처럼 특정 시기에 수입이 집중되는 일은 몇 달치만 떼어 보면 실제와 완전히 어긋납니다.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>확인할 것</th><th>정리 방법</th></tr></thead>
+<tbody>
+<tr><th>기간</th><td>성수기와 비수기를 모두 포함한 최근 12개월</td></tr>
+<tr><th>비용</th><td>유류비, 자재비, 인건비 등 실제로 빠져나가는 돈을 분리</td></tr>
+<tr><th>장비</th><td>선박·차량·기계는 시세에서 할부·담보 잔액을 뺀 실질 가치</td></tr>
+<tr><th>입금 성격</th><td>매출·차용·가족이체·보조금을 구분해 표시</td></tr>
+</tbody></table></div>
+<p>비수기에 생활비로 빌린 돈이 채무에 섞여 있는 경우가 많습니다. 이 부분을 미리 정리해 두면 보정 횟수가 크게 줄어듭니다.</p>
+
+<h2 id="choice">개인회생인가, 개인파산인가</h2>
+<p>군산 상담에서 실제로 자주 갈리는 지점입니다. 고령이거나 건강 문제로 재취업이 어려운 경우, 소득이 생계비 수준에도 못 미치면 개인회생은 맞지 않습니다.</p>
+<div class="callout"><b>판단 기준은 하나입니다</b><p>월 소득에서 법이 정한 생계비를 뺀 금액이 <strong>의미 있게 남는가.</strong> 남으면 개인회생, 남지 않으면 <a href="/jeonju-personal-bankruptcy/">개인파산</a>을 검토합니다. 눈대중으로 판단하지 마시고 가구원 수와 실제 지출 구조까지 넣어 계산해 보셔야 합니다.</p></div>
+<p>연금 수급자도 마찬가지입니다. 연금은 반복 수입이지만 금액에 따라 결론이 달라집니다. 상담에서 함께 계산해 드립니다.</p>
+
+<h2 id="court">군산지원 관할과 접수</h2>
+<p>군산시 거주자의 개인회생 사건은 <strong>전주지방법원 군산지원</strong>이 담당합니다. 익산시도 같은 군산지원 관할입니다.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>거주지</th><th>담당 법원</th></tr></thead>
+<tbody>
+<tr><th>군산시 · 익산시</th><td>전주지방법원 <strong>군산지원</strong></td></tr>
+<tr><th>전주시 · 김제시 · 완주군</th><td>전주지방법원 본원</td></tr>
+</tbody></table></div>
+<p>사건 접수 법원과 대리인 사무소 위치는 별개입니다. 개인회생은 대부분 서면으로 진행되고, 출석이 필요한 경우에는 미리 안내드립니다. 방문이 어려우면 전화와 카카오톡으로 먼저 확인하실 수 있습니다.</p>
+
+<h2 id="amount">변제금과 청산가치</h2>
+<p>변제금은 두 기준을 모두 통과해야 합니다. 하나는 <strong>월 소득에서 생계비를 뺀 가용소득</strong>, 다른 하나는 <strong>재산을 처분했을 때의 가치(청산가치)</strong>입니다.</p>
+<ul>
+<li>생계비는 기준 중위소득의 60%를 원칙으로 하고 가구원 수에 따라 달라집니다</li>
+<li>임차보증금, 차량, 선박·장비, 보험 해약환급금이 청산가치에 반영됩니다</li>
+<li>변제기간은 원칙 36개월, 특별한 사정이 있으면 최장 60개월</li>
+</ul>
+<p>세부 계산 구조는 <a href="/jeonju-personal-rehabilitation/#amount">변제금 산정 방식</a>에, 비용은 <a href="/jeonju-personal-rehabilitation-cost/">비용 안내</a>에 정리해 두었습니다.</p>
+<div class="related-grid">
+<a href="/blog/gunsan/"><span>군산 칼럼</span>군산개인회생 칼럼 모아보기</a>
+<a href="/blog/topic/income/"><span>주제별</span>소득 증빙 칼럼</a>
+<a href="/blog/topic/property/"><span>주제별</span>재산·보증금 칼럼</a>
+<a href="/iksan-personal-rehabilitation/"><span>인근 지역</span>익산개인회생 안내</a>
+</div>
+
+<h2 id="faq">자주 묻는 질문</h2>
+${faqHtml(gunsanFaqs)}
+
+${ctaBand('군산개인회생, 소득이 불규칙해도 방법이 있습니다.', '지레 포기하지 마시고 최근 통장 흐름만 알려주세요. 반복 소득으로 설명이 되는지 먼저 확인해 드립니다.')}
+${DISCLAIMER}
+</article>
+${sideCta([{ href: '/blog/gunsan/', label: '군산개인회생 칼럼' }, { href: '/iksan-personal-rehabilitation/', label: '익산개인회생 안내' }])}
+</div></div>`;
+
+write('/gunsan-personal-rehabilitation/', page({
+  path: '/gunsan-personal-rehabilitation/',
+  title: '군산개인회생 신청자격·소득변동 소명 안내 | 법무법인 태앤규',
+  description: '군산개인회생은 전주지방법원 군산지원 관할입니다. 휴업·구조조정으로 오르내린 소득의 소명 방법, 조업·계절 편차 소득 정리, 개인파산과의 갈림길을 정리했습니다.',
+  keywords: '군산개인회생, 군산개인회생변호사, 군산 개인회생 상담, 군산지원 개인회생',
+  trail: [HOME, { name: '군산개인회생', url: `${SITE}/gunsan-personal-rehabilitation/` }],
+  ld: [faqLd(gunsanFaqs)],
+  body: gunsanBody,
+}));
+
+console.log('\nDone. 7 pages built.');
