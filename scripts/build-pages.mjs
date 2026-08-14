@@ -2,7 +2,7 @@
 // 사용: node scripts/build-pages.mjs
 import { mkdirSync, writeFileSync } from 'node:fs';
 import {
-  SITE, PHONE, FIRM, LAWYER, ADDRESS, KAKAO, NAVER_MAP,
+  SITE, PHONE, FIRM, LAWYER, ADDRESS, KAKAO, NAVER_MAP, POSTAL, BAR,
   page, sideCta, ctaBand, crumbHtml, faqHtml, faqLd, DISCLAIMER,
 } from './lib/site.mjs';
 
@@ -461,14 +461,24 @@ ${crumbHtml([HOME, { name: '변호사 소개', url: `${SITE}/lawyer/` }])}
 <h2>약력</h2>
 <div class="table-wrap"><table>
 <tbody>
-<tr><th>성명</th><td>${LAWYER} (金基泰)</td></tr>
+<tr><th>성명</th><td>${LAWYER} 변호사</td></tr>
 <tr><th>직위</th><td>${FIRM} 대표변호사</td></tr>
-<tr><th>자격</th><td>사법시험 40기</td></tr>
-<tr><th>주요 업무</th><td>개인회생 · 개인파산 · 채무조정 · 민사 · 형사</td></tr>
+<tr><th>경력</th><td>변호사 17년</td></tr>
+<tr><th>소속</th><td>${BAR}</td></tr>
+<tr><th>주요 경력</th><td>前 전북경찰청 이의심사위원</td></tr>
+<tr><th>주요 업무분야</th><td>개인회생 · 개인파산 · 채무조정 · 형사 · 이혼 · 부동산 · 노동</td></tr>
 <tr><th>상담 지역</th><td>전주(완산구·덕진구), 완주, 김제, 임실, 진안, 무주, 익산, 군산 및 전국 비대면</td></tr>
-<tr><th>사무소</th><td>${ADDRESS}</td></tr>
+<tr><th>사무소</th><td>(${POSTAL}) ${ADDRESS}</td></tr>
+<tr><th>상담 접수</th><td>24시간</td></tr>
 </tbody></table></div>
-<!-- TODO(운영자 확인 필요): 학력, 소속 지방변호사회 및 등록번호, 주요 경력·수행사례를 위 표에 추가해 주세요. 실제 확인된 내용만 기재해야 합니다. -->
+<!-- TODO(운영자 확인 필요): 학력과 변호사 등록번호를 위 표에 추가하면 좋습니다.
+     "전문" 표기는 대한변협에 해당 분야를 전문분야로 등록한 경우에만 쓸 수 있어,
+     현재는 "주요 업무분야"로 표기해 두었습니다. 등록되어 있다면 알려주세요. -->
+
+<h2>17년, 전북에서</h2>
+<p>17년 동안 전북 지역에서 형사, 이혼, 부동산, 노동 사건을 맡아 왔습니다. 그 시간 동안 확인한 것이 하나 있습니다. <strong>사건의 종류는 달라도, 결국 무너지는 지점은 돈 문제인 경우가 많다</strong>는 것입니다.</p>
+<p>형사사건으로 오셨다가 채무 이야기가 나오고, 이혼 상담 중에 배우자 명의 재산과 보증채무가 얽혀 있는 경우를 여러 번 봤습니다. 개인회생과 개인파산을 따로 떼어놓고 보지 않는 이유입니다. 채무 사건은 그 사람의 생활 전체와 연결되어 있습니다.</p>
+<p>前 전북경찰청 이의심사위원으로 활동하며 절차가 진행되는 방식과 판단 기준을 안쪽에서 볼 기회도 있었습니다. 서류를 어떤 순서로, 어떤 형태로 내느냐가 결과를 바꾼다는 것을 그때 확인했습니다.</p>
 
 <h2>사건을 보는 기준</h2>
 <h3>1. 채무 총액보다 구조를 먼저 봅니다</h3>
@@ -509,7 +519,7 @@ ${sideCta()}
 write('/lawyer/', page({
   path: '/lawyer/',
   title: '김기태 대표변호사 소개 | 법무법인 태앤규 전주개인회생',
-  description: '법무법인 태앤규 김기태 대표변호사 소개. 전주·완주·김제·익산·군산 개인회생과 개인파산 사건에서 채무 구조 분석, 신청 시점 판단, 변제계획 설계를 직접 검토합니다.',
+  description: '변호사 17년, 전북지방변호사회 소속 김기태 대표변호사. 前 전북경찰청 이의심사위원. 전주·완주·김제·익산·군산 개인회생과 개인파산 사건에서 채무 구조 분석과 변제계획 설계를 직접 검토합니다.',
   keywords: '전주개인회생변호사, 김기태 변호사, 법무법인 태앤규, 전주 개인파산 변호사',
   trail: [HOME, { name: '변호사 소개', url: `${SITE}/lawyer/` }],
   ld: [{
@@ -520,8 +530,9 @@ write('/lawyer/', page({
     worksFor: { '@id': `${SITE}/#legalservice` },
     image: `${SITE}/kim-gitae-photo.jpg`,
     url: `${SITE}/lawyer/`,
-    knowsAbout: ['개인회생', '개인파산', '채무조정', '민사', '형사'],
-    address: { '@type': 'PostalAddress', addressLocality: '전주시', addressRegion: '전북특별자치도', addressCountry: 'KR' },
+    knowsAbout: ['개인회생', '개인파산', '채무조정', '형사', '이혼', '부동산', '노동'],
+    memberOf: { '@type': 'Organization', name: BAR },
+    address: { '@type': 'PostalAddress', addressLocality: '전주시', addressRegion: '전북특별자치도', postalCode: POSTAL, addressCountry: 'KR' },
   }],
   body: lawyerBody,
 }));

@@ -6,6 +6,9 @@ export const PHONE = '0507-1336-5516';
 export const FIRM = '법무법인 태앤규';
 export const LAWYER = '김기태';
 export const ADDRESS = '전북 전주시 완산구 홍산남로 19 즐거운빌딩 3층 302호';
+export const POSTAL = '54966';
+export const BIZ_NO = '527-36-00479';
+export const BAR = '전북지방변호사회';
 export const KAKAO = 'https://pf.kakao.com/_vsGmn/chat';
 export const NAVER_MAP = 'https://naver.me/Fy2SbxqM';
 export const OG_IMAGE = `${SITE}/og-cover.jpg`;
@@ -142,12 +145,12 @@ ${item('/blog/', '칼럼')}
 
 export const footer = () => `<footer class="sitefoot"><div class="wrap">
 <div class="foot-grid">
-<div><b>${FIRM}</b><br>대표변호사 ${LAWYER}<br>${ADDRESS}<br>대표전화 <a href="tel:${PHONE}">${PHONE}</a></div>
+<div><b>${FIRM}</b><br>대표변호사 ${LAWYER}<br>(${POSTAL}) ${ADDRESS}<br>대표전화 <a href="tel:${PHONE}">${PHONE}</a><br>24시간 상담 접수</div>
 <div><b>주요 안내</b><br><a href="/jeonju-personal-rehabilitation/">전주개인회생</a> · <a href="/jeonju-personal-rehabilitation-cost/">개인회생 비용</a><br><a href="/jeonju-personal-bankruptcy/">전주개인파산</a> · <a href="/blog/">법률칼럼</a><br><a href="/lawyer/">변호사 소개</a> · <a href="/location/">오시는 길</a></div>
-<div><b>지역별 칼럼</b><br><a href="/blog/jeonju/">전주개인회생</a> · <a href="/blog/iksan/">익산개인회생</a> · <a href="/blog/gunsan/">군산개인회생</a><br>전주 완산구·덕진구, 완주·김제·임실·진안·무주<br>전국 비대면 상담 가능</div>
+<div><b>지역별 칼럼</b><br><a href="/blog/jeonju/">전주개인회생</a> · <a href="/blog/iksan/">익산개인회생</a> · <a href="/blog/gunsan/">군산개인회생</a><br>전주 완산구·덕진구, 완주·김제·임실·진안·무주<br><a href="https://taeandkyu.com/" rel="noopener">전주변호사 법무법인 태앤규 본원</a></div>
 </div>
-<!-- TODO(운영자 확인 필요): 사업자등록번호와 소속 지방변호사회 등록번호를 아래 줄에 채워 주세요. 변호사업무광고규정상 표기 대상입니다. -->
-<div class="foot-legal">광고책임변호사 ${LAWYER} 변호사 · 본 사이트의 게시물은 개인회생·개인파산 절차에 관한 일반적인 법률정보이며, 개별 사건의 결과를 보장하지 않습니다.<br>© ${FIRM}. All rights reserved.</div>
+<!-- TODO(운영자 확인 필요): 변호사 등록번호를 아래 줄에 추가해 주세요. -->
+<div class="foot-legal">사업자등록번호 ${BIZ_NO} · 소속 ${BAR} · 광고책임변호사 ${LAWYER} 변호사<br>본 사이트의 게시물은 개인회생·개인파산 절차에 관한 일반적인 법률정보이며, 개별 사건의 결과를 보장하지 않습니다.<br>© ${FIRM}. All rights reserved.</div>
 </div></footer>`;
 
 export const legalServiceLd = () => ({
@@ -164,12 +167,19 @@ export const legalServiceLd = () => ({
     streetAddress: '완산구 홍산남로 19 즐거운빌딩 3층 302호',
     addressLocality: '전주시',
     addressRegion: '전북특별자치도',
-    // TODO(운영자 확인 필요): 실제 우편번호를 postalCode 로 채우면 로컬 검색에 도움이 됩니다.
+    postalCode: POSTAL,
     addressCountry: 'KR',
   },
   areaServed: ['전주시', '완주군', '김제시', '익산시', '군산시', '임실군', '진안군', '무주군', '전북특별자치도'].map((n) => ({ '@type': 'AdministrativeArea', name: n })),
-  employee: { '@type': 'Person', name: LAWYER, jobTitle: '대표변호사' },
-  sameAs: [NAVER_MAP, 'https://pf.kakao.com/_vsGmn'],
+  employee: { '@type': 'Person', name: LAWYER, jobTitle: '대표변호사', memberOf: { '@type': 'Organization', name: BAR } },
+  // 24시간 상담 접수 기준
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  }],
+  sameAs: [NAVER_MAP, 'https://pf.kakao.com/_vsGmn', 'https://taeandkyu.com/'],
   hasMap: NAVER_MAP,
 });
 
@@ -226,7 +236,7 @@ export const sideCta = (extraLinks = []) => `<aside class="side">
 <div class="side-card dark"><h3>상담 전 확인</h3><p>채무 총액, 월 소득, 재산, 최근 대출, 압류 진행 여부를 함께 정리하면 예상 변제금과 신청 가능성을 더 빠르게 검토할 수 있습니다.</p>
 <a class="btn gold" href="tel:${PHONE}">${PHONE}</a>
 <a class="btn ghost" href="${KAKAO}" target="_blank" rel="noopener">카카오톡 상담</a></div>
-<div class="side-card"><h3>${LAWYER} 대표변호사</h3><p>사법시험 40기. 전주·완주·김제·익산·군산 채무자의 개인회생·개인파산 사건을 직접 검토합니다.</p><a class="btn line" href="/lawyer/">변호사 소개 보기</a></div>
+<div class="side-card"><h3>${LAWYER} 대표변호사</h3><p>변호사 17년 · ${BAR} · 前 전북경찰청 이의심사위원. 전주·완주·김제·익산·군산 채무자의 개인회생·개인파산 사건을 직접 검토합니다.</p><a class="btn line" href="/lawyer/">변호사 소개 보기</a></div>
 <div class="side-card"><h3>함께 보면 좋은 안내</h3><ul class="side-links">
 ${[...extraLinks, { href: '/jeonju-personal-rehabilitation/', label: '전주개인회생 종합 안내' }, { href: '/jeonju-personal-rehabilitation-cost/', label: '개인회생 비용·수임료' }, { href: '/jeonju-personal-bankruptcy/', label: '전주개인파산 안내' }, { href: '/blog/', label: '개인회생 법률칼럼' }, { href: '/location/', label: '오시는 길 · 전주지방법원' }]
     .filter((l, i, arr) => arr.findIndex((x) => x.href === l.href) === i)
