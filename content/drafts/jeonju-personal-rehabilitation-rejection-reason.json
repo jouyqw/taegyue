@@ -1,6 +1,5 @@
 {
   "slug": "jeonju-personal-rehabilitation-rejection-reason",
-  "publishAt": "2026-08-30",
   "title": "전주개인회생 기각 사유｜기각과 폐지는 무엇이 다른가",
   "description": "전주개인회생에서 개시신청이 기각되는 사유와 진행 중 폐지되는 경우를 구분하고, 전주지방법원 실무에서 자주 지적되는 항목을 준비 단계에서 어떻게 막는지 정리했습니다.",
   "lead": "결론부터 말씀드리면, 기각은 절차가 시작되기 전에 막히는 것이고 폐지는 시작된 절차가 중간에 끝나는 것입니다. 둘은 원인도 다르고 다시 준비하는 방법도 다릅니다.",
@@ -20,8 +19,18 @@
     }
   ],
   "related": [
-    { "href": "/blog/iksan-personal-rehabilitation-rejection-reason", "label": "익산개인회생 기각 사유와 보정 대응" },
-    { "href": "/blog/jeonju-personal-rehabilitation-document-preparation", "label": "전주개인회생 서류 준비 순서" },
-    { "href": "/blog/jeonju-personal-rehabilitation-living-cost-standard", "label": "생계비 기준은 어떻게 정해지나" }
-  ]
+    {
+      "href": "/blog/iksan-personal-rehabilitation-rejection-reason",
+      "label": "익산개인회생 기각 사유와 보정 대응"
+    },
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-document-preparation",
+      "label": "전주개인회생 서류 준비 순서"
+    },
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-living-cost-standard",
+      "label": "생계비 기준은 어떻게 정해지나"
+    }
+  ],
+  "date": "2026-08-30"
 }
