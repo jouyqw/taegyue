@@ -1,6 +1,5 @@
 {
   "slug": "iksan-personal-rehabilitation-unemployment-benefit",
-  "publishAt": "2026-08-31",
   "title": "익산개인회생 실업급여를 받는 중이라면｜소득 판단",
   "description": "실업급여를 받는 동안 익산개인회생을 신청할 수 있는지, 구직급여가 소득으로 잡히는지, 재취업 시점을 어떻게 잡아야 하는지 상담 사례를 바탕으로 정리했습니다.",
   "lead": "결론부터 말씀드리면, 실업급여는 정해진 기간에만 나오는 돈이라 그것만으로는 개인회생의 소득 요건을 채우기 어렵습니다. 다만 신청 시점을 어떻게 잡느냐에 따라 방법이 달라집니다.",
@@ -20,8 +19,18 @@
     }
   ],
   "related": [
-    { "href": "/blog/iksan-personal-rehabilitation-irregular-income", "label": "익산개인회생 소득이 일정하지 않을 때" },
-    { "href": "/blog/iksan-personal-rehabilitation-business-closure", "label": "폐업 후 개인회생을 준비한다면" },
-    { "href": "/blog/jeonju-personal-rehabilitation-severance-pay", "label": "퇴직금이 있으면 변제금이 올라가나" }
-  ]
+    {
+      "href": "/blog/iksan-personal-rehabilitation-irregular-income",
+      "label": "익산개인회생 소득이 일정하지 않을 때"
+    },
+    {
+      "href": "/blog/iksan-personal-rehabilitation-business-closure",
+      "label": "폐업 후 개인회생을 준비한다면"
+    },
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-severance-pay",
+      "label": "퇴직금이 있으면 변제금이 올라가나"
+    }
+  ],
+  "date": "2026-08-31"
 }
