@@ -1,6 +1,5 @@
 {
   "slug": "gunsan-personal-rehabilitation-industrial-accident",
-  "publishAt": "2026-09-01",
   "title": "군산개인회생 산재보상금을 받았다면｜재산 정리",
   "description": "산재 요양 중이거나 보상금을 받은 상태에서 군산개인회생을 준비할 때, 휴업급여와 장해급여가 소득과 재산 중 어디로 정리되는지 실무 기준으로 설명합니다.",
   "lead": "결론부터 말씀드리면, 산재보험 급여는 압류가 제한되는 돈이지만 받은 뒤 통장에 남아 있는 금액은 재산으로 확인됩니다. 언제 받았고 어디에 썼는지를 설명할 수 있어야 합니다.",
@@ -20,8 +19,18 @@
     }
   ],
   "related": [
-    { "href": "/blog/gunsan-personal-rehabilitation-shipbuilding", "label": "군산 조선업 종사자의 개인회생" },
-    { "href": "/blog/iksan-personal-rehabilitation-medical-debt", "label": "병원비로 늘어난 채무를 정리할 때" },
-    { "href": "/blog/gunsan-personal-rehabilitation-liquidation-value", "label": "청산가치는 어떻게 계산되나" }
-  ]
+    {
+      "href": "/blog/gunsan-personal-rehabilitation-shipbuilding",
+      "label": "군산 조선업 종사자의 개인회생"
+    },
+    {
+      "href": "/blog/iksan-personal-rehabilitation-medical-debt",
+      "label": "병원비로 늘어난 채무를 정리할 때"
+    },
+    {
+      "href": "/blog/gunsan-personal-rehabilitation-liquidation-value",
+      "label": "청산가치는 어떻게 계산되나"
+    }
+  ],
+  "date": "2026-09-01"
 }
