@@ -1,6 +1,5 @@
 {
   "slug": "jeonju-personal-rehabilitation-delivery-rider",
-  "publishAt": "2026-09-02",
   "title": "전주개인회생 배달 라이더의 소득자료 준비",
   "description": "배달 라이더처럼 플랫폼에서 정산받는 소득으로 전주개인회생을 준비할 때, 어떤 자료로 수입을 증명하고 필요경비는 어떻게 정리하는지 실무 순서대로 설명합니다.",
   "lead": "결론부터 말씀드리면, 라이더 소득은 통장 입금액이 곧 소득이 아닙니다. 정산 내역에서 수수료와 경비를 갈라내야 실제 가용소득이 나옵니다.",
@@ -20,8 +19,18 @@
     }
   ],
   "related": [
-    { "href": "/blog/jeonju-personal-rehabilitation-freelancer", "label": "프리랜서 소득으로 신청할 때" },
-    { "href": "/blog/iksan-personal-rehabilitation-platform-worker-income", "label": "플랫폼 노동 소득의 증명 방법" },
-    { "href": "/blog/jeonju-personal-rehabilitation-car-ownership", "label": "차량이 있으면 어떻게 되나" }
-  ]
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-freelancer",
+      "label": "프리랜서 소득으로 신청할 때"
+    },
+    {
+      "href": "/blog/iksan-personal-rehabilitation-platform-worker-income",
+      "label": "플랫폼 노동 소득의 증명 방법"
+    },
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-car-ownership",
+      "label": "차량이 있으면 어떻게 되나"
+    }
+  ],
+  "date": "2026-09-02"
 }
