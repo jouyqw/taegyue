@@ -1,6 +1,5 @@
 {
   "slug": "iksan-personal-rehabilitation-car-lease",
-  "publishAt": "2026-09-03",
   "title": "익산개인회생 리스·렌트 차량은 어떻게 되나",
   "description": "리스나 장기렌트로 타던 차량이 있을 때 익산개인회생에서 재산과 채무를 어떻게 나누어 적는지, 계약을 유지할 수 있는지 계약 유형별로 정리했습니다.",
   "lead": "결론부터 말씀드리면, 리스·렌트 차량은 소유권이 내게 없으므로 재산으로 잡히지 않습니다. 대신 남은 리스료를 어떻게 처리할지가 쟁점이 됩니다.",
@@ -20,8 +19,18 @@
     }
   ],
   "related": [
-    { "href": "/blog/jeonju-personal-rehabilitation-car-ownership", "label": "차량이 있으면 어떻게 되나" },
-    { "href": "/blog/iksan-personal-rehabilitation-living-cost-standard", "label": "익산개인회생 생계비 기준" },
-    { "href": "/blog/gunsan-personal-rehabilitation-liquidation-value", "label": "청산가치는 어떻게 계산되나" }
-  ]
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-car-ownership",
+      "label": "차량이 있으면 어떻게 되나"
+    },
+    {
+      "href": "/blog/iksan-personal-rehabilitation-living-cost-standard",
+      "label": "익산개인회생 생계비 기준"
+    },
+    {
+      "href": "/blog/gunsan-personal-rehabilitation-liquidation-value",
+      "label": "청산가치는 어떻게 계산되나"
+    }
+  ],
+  "date": "2026-09-03"
 }
