@@ -152,7 +152,7 @@ export const footer = () => `<footer class="sitefoot"><div class="wrap">
 <div><b>지역별 칼럼</b><br><a href="/blog/jeonju/">전주개인회생</a> · <a href="/blog/iksan/">익산개인회생</a> · <a href="/blog/gunsan/">군산개인회생</a><br>전주 완산구·덕진구, 완주·김제·임실·진안·무주<br><a href="https://taeandkyu.com/" rel="noopener">전주변호사 법무법인 태앤규 본원</a></div>
 </div>
 <!-- TODO(운영자 확인 필요): 변호사 등록번호를 아래 줄에 추가해 주세요. -->
-<div class="foot-legal">사업자등록번호 ${BIZ_NO} · 소속 ${BAR} · 광고책임변호사 ${LAWYER} 변호사<br>본 사이트의 게시물은 개인회생·개인파산 절차에 관한 일반적인 법률정보이며, 개별 사건의 결과를 보장하지 않습니다.<br>© ${FIRM}. All rights reserved.</div>
+<div class="foot-legal">사업자등록번호 ${BIZ_NO} · 소속 ${BAR} · 광고책임변호사 ${LAWYER} 변호사<br>본 사이트의 게시물은 개인회생·개인파산 절차에 관한 일반적인 법률정보이며, 개별 사건의 결과를 보장하지 않습니다.<br>© ${FIRM}. All rights reserved. · 사이트 제작·운영 <a href="https://aubcompany.com/" rel="noopener">아비컴퍼니</a></div>
 </div></footer>`;
 
 export const legalServiceLd = () => ({
