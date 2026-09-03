@@ -1,6 +1,5 @@
 {
   "slug": "gunsan-personal-rehabilitation-employer-notice",
-  "publishAt": "2026-09-04",
   "title": "군산개인회생 회사에 알려지나요｜통지 경로 확인",
   "description": "군산개인회생을 신청하면 직장에 알려지는지, 급여압류와 서류 발급 과정에서 어디까지 노출되는지 실제 통지 경로를 단계별로 정리했습니다.",
   "lead": "결론부터 말씀드리면, 법원이 회사로 신청 사실을 통보하는 절차는 없습니다. 다만 이미 급여압류가 걸려 있다면 그 경로로 회사가 알게 되는 경우가 있습니다.",
@@ -20,8 +19,18 @@
     }
   ],
   "related": [
-    { "href": "/blog/gunsan-personal-rehabilitation-prohibition-order", "label": "금지명령·중지명령은 언제 신청하나" },
-    { "href": "/blog/gunsan-personal-rehabilitation-family-privacy", "label": "가족에게 알려지는지 걱정된다면" },
-    { "href": "/blog/jeonju-personal-rehabilitation-guarantor", "label": "보증인이 있는 채무는 어떻게 되나" }
-  ]
+    {
+      "href": "/blog/gunsan-personal-rehabilitation-prohibition-order",
+      "label": "금지명령·중지명령은 언제 신청하나"
+    },
+    {
+      "href": "/blog/gunsan-personal-rehabilitation-family-privacy",
+      "label": "가족에게 알려지는지 걱정된다면"
+    },
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-guarantor",
+      "label": "보증인이 있는 채무는 어떻게 되나"
+    }
+  ],
+  "date": "2026-09-04"
 }
