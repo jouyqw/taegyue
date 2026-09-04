@@ -1,6 +1,5 @@
 {
   "slug": "jeonju-personal-rehabilitation-statute-limitation",
-  "publishAt": "2026-09-05",
   "title": "전주개인회생 소멸시효가 지난 오래된 빚",
   "description": "10년 넘게 방치된 카드빚이나 대부업 채무에 소멸시효가 완성됐는지 확인하는 방법과, 전주개인회생 채권자목록에 어떻게 적어야 하는지 실무 기준으로 설명합니다.",
   "lead": "결론부터 말씀드리면, 시효가 지난 것 같아도 채권자목록에서 빼면 안 됩니다. 목록에는 적고, 시효 완성 여부는 그 안에서 밝히는 것이 안전합니다.",
@@ -20,8 +19,18 @@
     }
   ],
   "related": [
-    { "href": "/blog/jeonju-personal-rehabilitation-debt-total-limit", "label": "채무 총액 한도는 어떻게 되나" },
-    { "href": "/blog/gunsan-personal-rehabilitation-collection-agency", "label": "추심업체로 채권이 넘어갔다면" },
-    { "href": "/blog/iksan-personal-rehabilitation-private-loan-debt", "label": "대부업 채무를 정리할 때" }
-  ]
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-debt-total-limit",
+      "label": "채무 총액 한도는 어떻게 되나"
+    },
+    {
+      "href": "/blog/gunsan-personal-rehabilitation-collection-agency",
+      "label": "추심업체로 채권이 넘어갔다면"
+    },
+    {
+      "href": "/blog/iksan-personal-rehabilitation-private-loan-debt",
+      "label": "대부업 채무를 정리할 때"
+    }
+  ],
+  "date": "2026-09-05"
 }
