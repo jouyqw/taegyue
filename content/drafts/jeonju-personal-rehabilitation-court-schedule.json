@@ -1,6 +1,5 @@
 {
   "slug": "jeonju-personal-rehabilitation-court-schedule",
-  "publishAt": "2026-09-08",
   "date": "2026-09-08",
   "title": "전주개인회생 법원 출석, 며칠이나 가야 하나요",
   "description": "전주개인회생 신청 후 전주지방법원에서 진행되는 순서와, 신청인이 실제로 출석해야 하는 자리를 정리했습니다. 보정 기한, 채권자집회, 관할과 송달까지 상담에서 자주 나오는 질문 위주로 짚었습니다.",
@@ -21,7 +20,13 @@
     }
   ],
   "related": [
-    { "href": "/blog/jeonju-personal-rehabilitation-commencement-period", "label": "전주개인회생 개시결정까지 걸리는 기간" },
-    { "href": "/blog/jeonju-personal-rehabilitation-document-preparation", "label": "전주개인회생 서류 준비 순서" }
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-commencement-period",
+      "label": "전주개인회생 개시결정까지 걸리는 기간"
+    },
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-document-preparation",
+      "label": "전주개인회생 서류 준비 순서"
+    }
   ]
 }
