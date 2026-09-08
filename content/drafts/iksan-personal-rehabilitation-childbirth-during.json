@@ -1,6 +1,5 @@
 {
   "slug": "iksan-personal-rehabilitation-childbirth-during",
-  "publishAt": "2026-09-09",
   "date": "2026-09-09",
   "title": "익산개인회생 중 출산·육아휴직｜전주개인회생변호사 정리",
   "description": "개인회생 변제 중에 출산을 하거나 육아휴직에 들어가면 소득은 줄고 부양가족은 늘어납니다. 익산 상담에서 자주 나오는 육아휴직급여의 성격, 생계비 재산정, 변제계획 변경 시점을 정리했습니다.",
@@ -21,7 +20,13 @@
     }
   ],
   "related": [
-    { "href": "/blog/iksan-personal-rehabilitation-living-cost-standard", "label": "익산개인회생 생계비 기준은 어떻게 정해지나" },
-    { "href": "/blog/jeonju-personal-rehabilitation-repayment-change", "label": "전주개인회생 변제계획 변경이 필요한 때" }
+    {
+      "href": "/blog/iksan-personal-rehabilitation-living-cost-standard",
+      "label": "익산개인회생 생계비 기준은 어떻게 정해지나"
+    },
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-repayment-change",
+      "label": "전주개인회생 변제계획 변경이 필요한 때"
+    }
   ]
 }
