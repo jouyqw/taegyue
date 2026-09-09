@@ -1,6 +1,5 @@
 {
   "slug": "gunsan-personal-rehabilitation-truck-driver",
-  "publishAt": "2026-09-10",
   "date": "2026-09-10",
   "title": "군산개인회생 화물차 지입기사 실질소득｜전주개인회생변호사",
   "description": "지입료와 할부금, 유류비를 빼고 나면 통장에 찍힌 매출과 실제 수입이 크게 다릅니다. 군산개인회생 상담에서 화물차 지입기사의 소득을 어떻게 산정하고 차량을 어떻게 정리하는지 짚었습니다.",
@@ -21,7 +20,13 @@
     }
   ],
   "related": [
-    { "href": "/blog/jeonju-personal-rehabilitation-delivery-rider", "label": "전주개인회생 배달 라이더의 소득자료" },
-    { "href": "/blog/iksan-personal-rehabilitation-platform-worker-income", "label": "익산개인회생 플랫폼 종사자 소득 정리" }
+    {
+      "href": "/blog/jeonju-personal-rehabilitation-delivery-rider",
+      "label": "전주개인회생 배달 라이더의 소득자료"
+    },
+    {
+      "href": "/blog/iksan-personal-rehabilitation-platform-worker-income",
+      "label": "익산개인회생 플랫폼 종사자 소득 정리"
+    }
   ]
 }
