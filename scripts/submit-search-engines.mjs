@@ -12,7 +12,16 @@ function base64url(value) {
     .replace(/\//g, '_');
 }
 
-async function submitIndexNow() {
+async function readSitemapUrls() {
+  const response = await fetch(sitemapUrl, { headers: { 'cache-control': 'no-cache' } });
+  if (!response.ok) throw new Error(`사이트맵을 읽지 못했습니다: ${response.status}`);
+  const xml = await response.text();
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
+  if (!urls.length) throw new Error('사이트맵에 페이지 주소가 없습니다.');
+  return urls;
+}
+
+async function submitIndexNow(urls) {
   const response = await fetch('https://api.indexnow.org/indexnow', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
@@ -20,7 +29,8 @@ async function submitIndexNow() {
       host: new URL(siteUrl).host,
       key: indexNowKey,
       keyLocation: `${siteUrl}${indexNowKey}.txt`,
-      urlList: [sitemapUrl],
+      // IndexNow에는 사이트맵 주소가 아니라 실제 칼럼 주소를 보낸다.
+      urlList: urls,
     }),
   });
 
@@ -79,9 +89,12 @@ async function submitGoogleSitemap() {
 
   console.log(`Google sitemap ${sitemapUrl}: ${response.status} ${response.statusText}`);
   if (!response.ok && response.status !== 204) {
-    throw new Error(await response.text());
+    // 권한이 아직 연결되지 않았더라도 네이버 제출까지 실패 처리하지 않는다.
+    console.warn(`Google sitemap warning: ${await response.text()}`);
   }
 }
 
-await submitIndexNow();
+const urls = await readSitemapUrls();
+console.log(`사이트맵 URL ${urls.length}건`);
+await submitIndexNow(urls);
 await submitGoogleSitemap();
