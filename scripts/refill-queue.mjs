@@ -28,6 +28,46 @@ const RETRY = 2;
 const BATCH_TIMEOUT = 30 * 60 * 1000;
 const REGIONS = ['jeonju', 'iksan', 'gunsan'];
 
+/**
+ * 지역별 타깃 키워드 풀.
+ *
+ * 예전에는 지역이 셋인데 본문 키워드는 "전주개인회생" 하나로 고정이었다.
+ * 그래서 익산·군산 글도 전주 키워드만 반복했고, 정작 "익산개인회생변호사" 같은
+ * 검색어에는 걸릴 근거가 없었다. 네이버·구글 웹사이트 영역은 이렇게 잘게 갈린
+ * 지역 검색어에서 자리가 나므로, 글마다 그 지역 키워드 하나를 확실히 잡는다.
+ */
+// 괄호 안은 네이버 검색광고 API 실측 월간 검색수(2026-09-19).
+// "○○개인회생변호사" 는 생각보다 검색이 없다 — 전주개인회생변호사는 50회인데
+// 전주개인회생은 2,040회다. 익산·군산은 "개인회생변호사" 형태가 아예 10회 미만이라 뺐다.
+// 대신 그 지역에서 실제로 검색되는 "○○법무사" 를 안내 각도로 잡는다.
+const KEYWORD = {
+  jeonju: [
+    '전주개인회생',        // 2,040
+    '전주파산',            // 150
+    '전주개인회생전문',    // 130
+    '전주개인회생변호사',  // 50
+  ],
+  iksan: ['익산개인회생'],   // 250
+  gunsan: ['군산개인회생'],  // 320
+};
+
+/**
+ * 검색 수요는 큰데 우리가 자칭할 수 없는 키워드.
+ *
+ * 태앤규는 법무법인(변호사)이라 "법무사" 를 내세울 수 없다. 그래서 이 키워드는
+ * 자칭이 아니라 **찾는 사람에게 설명하는 각도**로만 쓴다.
+ * (예: "개인회생을 법무사에게 맡길 때와 변호사에게 맡길 때 무엇이 다른가")
+ * 검색 의도를 그대로 받으면서 표기 문제도 생기지 않는다.
+ */
+// 실측(2026-09-19): 익산법무사 460 · 전주법무사 1,120 · 군산법무사 220 ·
+//                   정읍법무사 100 · 남원법무사 70 · 고창법무사 60 · 법무사변호사차이 1,110
+// 개인회생 검색어보다 큰 경우가 많다(익산법무사 460 > 익산개인회생 250).
+const KEYWORD_INFORMATIONAL = {
+  jeonju: '전주법무사',
+  iksan: '익산법무사',
+  gunsan: '군산법무사',
+};
+
 const CLAUDE = [
   'C:\\Users\\c\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Anthropic.ClaudeCode_Microsoft.Winget.Source_8wekyb3d8bbwe\\claude.exe',
   'claude',
@@ -87,7 +127,7 @@ function validate(slug, known) {
 
 function prompt(batch, known) {
   const recent = [...known.titles].slice(-40).map((t) => `- ${t}`).join('\n');
-  const rows = batch.map((b) => `- 지역: ${b.region} / slug 접두사: ${b.region}- / publishAt: ${b.publishAt}`).join('\n');
+  const rows = batch.map((b) => `- 지역: ${b.region} / 타깃 키워드: ${b.keyword} / slug 접두사: ${b.region}- / publishAt: ${b.publishAt}`).join('\n');
   const relatable = [...known.published].slice(-40).map((s) => `/blog/${s}`).join('\n');
   return `너는 법무법인 태앤규(전주)의 전주개인회생 칼럼을 쓴다. taeandkyujeonju.com/blog 예약 큐에 ${batch.length}건을 채운다.
 
@@ -100,7 +140,7 @@ ${rows}
 
 ## 형식 (category·keyword 필드는 없다)
 { "slug": "<지역>-...", "publishAt": "<위 날짜>", "date": "<위 날짜>",
-  "title": "전주개인회생 자연 포함, 50자 이하", "description": "45~160자",
+  "title": "<타깃 키워드>로 시작, 50자 이하", "description": "45~160자",
   "lead": "결론부터 한두 문장", "bodyHtml": "<p>..</p><h2>..</h2>..",
   "faqs":[{"q","a"}x3], "related":[{"href":"/blog/<실제 슬러그>","label"}x2] }
 
@@ -112,7 +152,20 @@ ${rows}
   · <div class="table-wrap"><table>...</table></div>
   · <div class="infographic">...</div> (svg 속성만 홑따옴표)
 - 도입부는 상담에서 겪는 구체적 장면 하나로. 짧은 문단(1~2문장), 모바일 가독성 우선.
-- 전주개인회생/전주개인회생변호사를 본문에 자연스럽게 반복(스터핑 금지). 지역(전주/익산/군산) 상황을 구체적으로.
+- **위에 배정된 "타깃 키워드" 를 제목과 본문에 쓴다**(자연스럽게 4~8회, 스터핑 금지).
+  익산 글에 전주 키워드를 반복하지 말 것 — 지역마다 노리는 검색어가 다르다.
+- **제목 접미사도 그 지역으로 맞춘다.** 기존 글은 군산 글인데도 제목이
+  "｜전주개인회생변호사" 로 끝나 군산 검색어가 희석됐다.
+  익산 글은 "｜익산개인회생변호사", 군산 글은 "｜군산개인회생변호사" 로 끝낸다.
+- **배정된 지역의 사정을 실제로 쓴다.** 지역명만 갈아 끼운 같은 글이면 검색엔진이
+  대량생성으로 보고 걸러낸다. 관할과 동선을 구체적으로 적는다.
+  · 전주 → 전주지방법원 (전주회생법원 아님)
+  · 익산 → 전주지방법원 군산지원
+  · 군산 → 전주지방법원 군산지원
+- **"법무사" 를 자칭하지 않는다.** 태앤규는 법무법인(변호사)이다.
+  다만 "○○법무사" 로 검색해 들어오는 사람이 많으므로, 그 표현이 어울리는 주제라면
+  **비교·안내 각도**로 다룬다 — 개인회생을 법무사에게 맡길 때와 변호사에게 맡길 때
+  대리 범위·비용·법정 대응이 어떻게 다른지 사실만 적는다. 어느 한쪽을 깎아내리지 않는다.
 - 면책·탕감 보장이나 단정 표현 금지.
 - related 는 아래 "실제 존재하는 글" 에서만 고른다(깨진 링크 금지):
 ${relatable}
@@ -173,9 +226,46 @@ let base = existAt.length ? existAt[existAt.length - 1] : addDays(TODAY, -1);
 const known = { published: new Set([...jsonSlugs(DRAFTS)]), titles: new Set(), newSlugs: new Set() };
 queueItems().forEach((f) => { try { known.titles.add(JSON.parse(fs.readFileSync(path.join(QUEUE, f), 'utf8')).title); known.published.add(f.replace(/\.json$/, '')); } catch {} });
 
+/**
+ * 이미 쓴 키워드를 세어 가장 적게 쓴 것부터 배정한다.
+ * 순서대로만 돌리면 새로 넣은 지역 키워드가 뒤로 밀려 한동안 한 편도 안 나온다.
+ * 초안에는 keyword 필드가 없으므로 본문에서 직접 센다.
+ */
+function keywordUsage() {
+  const used = new Map();
+  const all = Object.values(KEYWORD).flat();
+  for (const dir of [DRAFTS, QUEUE]) {
+    let files = [];
+    try { files = fs.readdirSync(dir).filter((f) => f.endsWith('.json')); } catch { }
+    for (const f of files) {
+      let text = '';
+      try {
+        const d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+        text = `${d.title ?? ''} ${d.description ?? ''}`;
+      } catch { continue; }
+      // 제목·설명에 들어간 것만 센다. 본문 언급까지 세면 전주 키워드가 모든 글에 잡힌다.
+      for (const k of all) if (text.includes(k)) used.set(k, (used.get(k) ?? 0) + 1);
+    }
+  }
+  return used;
+}
+
+const usage = keywordUsage();
+const pickKeyword = (region) => {
+  const pool = KEYWORD[region];
+  let best = pool[0];
+  for (const k of pool) if ((usage.get(k) ?? 0) < (usage.get(best) ?? 0)) best = k;
+  usage.set(best, (usage.get(best) ?? 0) + 1);
+  return best;
+};
+
 const batch = [];
-for (let i = 0; i < need; i += 1) batch.push({ region: REGIONS[i % 3], publishAt: addDays(base, i + 1) });
+for (let i = 0; i < need; i += 1) {
+  const region = REGIONS[i % 3];
+  batch.push({ region, keyword: pickKeyword(region), publishAt: addDays(base, i + 1) });
+}
 log(`${need}건 보충 시작 → ${batch[0].publishAt} ~ ${batch[batch.length - 1].publishAt}`);
+log('배정 키워드: ' + batch.map((b) => `${b.region}=${b.keyword}`).join(', '));
 
 const written = [];
 for (let i = 0; i < batch.length; i += 3) {
