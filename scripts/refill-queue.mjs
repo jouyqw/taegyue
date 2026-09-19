@@ -208,6 +208,26 @@ fs.mkdirSync(QUEUE, { recursive: true });
 if (GIT) {
   try { git(['fetch', 'origin', 'main']); git(['merge', '--ff-only', 'origin/main']); log('원격 반영'); }
   catch (e) { fail('원격과 갈라짐', String(e.stdout || e.message)); }
+
+  // 추적되지 않은 큐 파일이 남아 있으면 먼저 올린다.
+  //
+  // 발행은 "원격에 있는" 큐를 꺼내 쓴다. 그런데 이 스크립트는 로컬 파일을 세므로,
+  // 파일이 git 에 안 올라가 있으면 로컬만 7편이고 원격은 0편인 상태가 된다.
+  // 그러면 "7편 있음 → 보충 불필요" 로 끝나고, 원격은 빈 채로 발행이 멈춘다.
+  // 2026-09-15~18 에 실제로 나흘간 이렇게 멈췄다. 로그에는 아무 이상도 안 보였다.
+  try {
+    const stray = git(['ls-files', '--others', '--exclude-standard', '--', 'content/queue'])
+      .split('\n').map((s) => s.trim()).filter(Boolean);
+    if (stray.length) {
+      log(`!! 추적되지 않은 큐 ${stray.length}편 발견 — 먼저 올립니다`);
+      git(['add', '--', 'content/queue']);
+      git(['-c', 'core.autocrlf=false', 'commit', '-q', '-m', `큐 누락분 ${stray.length}편 올림`]);
+      git(['push', '-q', 'origin', 'main']);
+      log('   올림 완료');
+    }
+  } catch (e) {
+    fail('추적되지 않은 큐를 올리지 못했습니다', String(e.stdout || e.message));
+  }
 }
 
 let qn = queueItems().length;
