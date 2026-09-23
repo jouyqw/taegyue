@@ -17,14 +17,13 @@
   const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const modal=document.createElement('div');
   modal.className='ai-modal'; modal.id='aiDiagnosisModal'; modal.hidden=true;
-  modal.innerHTML='<div class="ai-dialog" role="dialog" aria-modal="true" aria-labelledby="aiDiagTitle"><button class="ai-close" type="button" aria-label="진단창 닫기">×</button><header class="ai-head"><div class="ai-kicker">AI 개인회생 사전자격진단</div><h2 id="aiDiagTitle">내 상황, 1분 만에 확인하세요</h2><p>선택하신 내용으로 신청 가능성과 꼭 확인할 쟁점을 정리해 드립니다.</p></header><div class="ai-progress-wrap"><div class="ai-progress"><span></span></div><div class="ai-progress-text"></div></div><main class="ai-body"></main></div>';
+  modal.innerHTML='<div class="ai-dialog" role="dialog" aria-modal="true" aria-labelledby="aiDiagTitle"><button class="ai-close" type="button" aria-label="진단창 닫기">×</button><header class="ai-head"><div class="ai-kicker">무료 AI 사전자격진단</div><h2 id="aiDiagTitle">개인회생 AI 자격진단</h2><p>아래 선택지를 한 문항씩 누르면 신청 가능성과 꼭 확인할 쟁점을 정리해 드립니다.</p></header><div class="ai-progress-wrap"><div class="ai-progress"><span></span></div><div class="ai-progress-text"></div></div><main class="ai-body"></main></div>';
   document.body.appendChild(modal);
   const body=modal.querySelector('.ai-body'), progress=modal.querySelector('.ai-progress span'), progressText=modal.querySelector('.ai-progress-text');
   let lastFocus=null;
   function openModal(e){if(e)e.preventDefault();lastFocus=document.activeElement;modal.hidden=false;document.body.classList.add('ai-modal-open');state.step=0;state.answers={};render();modal.querySelector('.ai-close').focus()}
   function closeModal(){modal.hidden=true;document.body.classList.remove('ai-modal-open');if(lastFocus)lastFocus.focus()}
-  document.querySelectorAll('a[href="#diagnosis"]').forEach(a=>{a.classList.add('ai-diagnosis-trigger');a.addEventListener('click',openModal)});
-  const oldBtn=document.getElementById('diagnoseBtn'); if(oldBtn) oldBtn.addEventListener('click',openModal,true);
+  document.querySelectorAll('a[href="#diagnosis"],[data-ai-diagnosis]').forEach(a=>{a.classList.add('ai-diagnosis-trigger');a.addEventListener('click',openModal)});
   modal.querySelector('.ai-close').addEventListener('click',closeModal);
   modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeModal()});
