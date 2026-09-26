@@ -114,7 +114,18 @@ function validate(slug, known) {
   const h2 = (String(d.bodyHtml).match(/<h2/g) || []).length;
   if (h2 < 4) e.push(`h2 ${h2}개(최소 4)`);
   if (!/class=['"]?(infographic|table-wrap|callout|warn)/.test(d.bodyHtml)) e.push('비주얼 블록 없음');
-  if (!/전주개인회생/.test(String(d.bodyHtml) + d.title)) e.push('전주개인회생 키워드 없음');
+  // 그 글의 지역 키워드가 들어 있는지 본다.
+  //
+  // 예전엔 어떤 글이든 "전주개인회생" 을 요구했다. 지역을 셋으로 넓힌 뒤에도 이 줄이
+  // 그대로 남아 있어서, 익산·군산 글이 전부 "전주개인회생 키워드 없음" 으로 반려됐다.
+  // 보충이 며칠째 0건으로 끝났고 큐가 말라 발행이 멈췄다(2026-09-26 확인).
+  // 지역별 키워드 표를 그대로 쓴다 — 표를 늘리면 검사도 같이 따라온다.
+  const region = (String(d.slug).match(/^(jeonju|iksan|gunsan)-/) || [])[1];
+  const wanted = KEYWORD[region] || [];
+  const haystack = String(d.bodyHtml) + d.title;
+  if (wanted.length && !wanted.some((k) => haystack.includes(k))) {
+    e.push(`${region} 지역 키워드 없음 (${wanted.join('/')} 중 하나는 있어야 합니다)`);
+  }
   for (const w of BANNED) if (String(d.bodyHtml).includes(w) || String(d.title).includes(w)) e.push(`금지표현: ${w}`);
   if (known.titles.has(d.title)) e.push('제목 중복');
   for (const r of d.related || []) {
