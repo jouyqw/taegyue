@@ -6,8 +6,8 @@ name: 예약 칼럼 발행
 #   발행   : 이 워크플로가 매일 한 편씩 렌더링해 커밋한다. LLM 이 끼지 않는다.
 
 on:
-  schedule:
-    - cron: "10 15 * * *" # 매일 00:10 KST
+  # Google 검색 순위 회복 기간에는 자동 대량 발행을 중단합니다.
+  # 검토가 끝난 글만 Actions 화면에서 수동으로 발행합니다.
   workflow_dispatch:
 
 permissions:
