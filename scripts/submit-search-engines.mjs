@@ -22,22 +22,38 @@ async function readSitemapUrls() {
 }
 
 async function submitIndexNow(urls) {
-  const response = await fetch('https://api.indexnow.org/indexnow', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({
-      host: new URL(siteUrl).host,
-      key: indexNowKey,
-      keyLocation: `${siteUrl}${indexNowKey}.txt`,
-      // IndexNow에는 사이트맵 주소가 아니라 실제 칼럼 주소를 보낸다.
-      urlList: urls,
-    }),
+  const host = new URL(siteUrl).host;
+  const body = JSON.stringify({
+    host,
+    key: indexNowKey,
+    keyLocation: `${siteUrl}${indexNowKey}.txt`,
+    // IndexNow에는 사이트맵 주소가 아니라 실제 칼럼 주소를 보낸다.
+    urlList: urls,
   });
 
-  console.log(`IndexNow ${new URL(siteUrl).host}: ${response.status} ${response.statusText}`);
-  if (!response.ok && response.status !== 202) {
-    throw new Error(await response.text());
+  // 허브(api.indexnow.org)만 쏘면 네이버 반영이 느리다. 네이버 직행도 함께 보낸다.
+  // 구글은 IndexNow 를 받지 않으므로 사이트맵 제출이 따로 필요하다.
+  const endpoints = ['https://api.indexnow.org/indexnow', 'https://searchadvisor.naver.com/indexnow'];
+
+  let accepted = 0;
+  for (const endpoint of endpoints) {
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body,
+      });
+      const ok = response.ok || response.status === 202;
+      console.log(`IndexNow ${host} → ${endpoint}: ${response.status} ${response.statusText}`);
+      if (ok) accepted += 1;
+      else if (response.status !== 429) console.warn(await response.text());
+    } catch (error) {
+      console.warn(`IndexNow ${endpoint} 실패: ${error.message}`);
+    }
   }
+
+  // 한 곳이라도 받았으면 성공으로 본다. 한쪽이 죽었다고 전체를 세우지 않는다.
+  if (!accepted) throw new Error('IndexNow 모든 엔드포인트 실패');
 }
 
 async function createGoogleAccessToken() {

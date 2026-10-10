@@ -290,10 +290,20 @@ const pickKeyword = (region) => {
   return best;
 };
 
+// 2026-10-10 평일에만 하루 2편으로 바꿨다.
+// 주말은 상담 문의가 거의 없어 그날 올린 글은 묻힌다. 같은 편수를 평일에 몰아 넣는다.
+const PER_DAY = 2;
+const isWeekend = (iso) => [0, 6].includes(new Date(`${iso}T00:00:00Z`).getUTCDay());
+const nextWeekday = (iso) => { let d = addDays(iso, 1); while (isWeekend(d)) d = addDays(d, 1); return d; };
+
 const batch = [];
+let day = base;
+let slotsToday = 0;
 for (let i = 0; i < need; i += 1) {
+  if (slotsToday === 0 || slotsToday >= PER_DAY) { day = nextWeekday(day); slotsToday = 0; }
+  slotsToday += 1;
   const region = REGIONS[i % 3];
-  batch.push({ region, keyword: pickKeyword(region), publishAt: addDays(base, i + 1) });
+  batch.push({ region, keyword: pickKeyword(region), publishAt: day });
 }
 log(`${need}건 보충 시작 → ${batch[0].publishAt} ~ ${batch[batch.length - 1].publishAt}`);
 log('배정 키워드: ' + batch.map((b) => `${b.region}=${b.keyword}`).join(', '));
