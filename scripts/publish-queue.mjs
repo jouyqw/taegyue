@@ -60,7 +60,13 @@ if (fs.existsSync(path.join(BLOG, `${draft.slug}.html`))) {
 }
 
 const { publishAt, ...rest } = draft;
-const final = { ...rest, date: rest.date || at };
+// date 는 publishAt 을 따른다. rest.date 를 우선하면 안 된다.
+//
+// 초안을 쓴 날이 date 로 박히는데, 예약일을 옮기면 publishAt 만 바뀌고 date 는 그대로다.
+// 그러면 10/13 에 나간 글이 datePublished 10/07 로 올라가고, 사이트맵 lastmod 도
+// 옛 날짜가 되어 (1) 검색엔진이 새 글로 보지 않고 (2) 발행 감시가 "멈췄다" 고 오탐한다.
+// 2026-10-13 에 실제로 그렇게 됐다 — 3편이 나갔는데 사이트맵 최신일이 10/07 이었다.
+const final = { ...rest, date: at || rest.date };
 const draftPath = path.join(DRAFTS, `${final.slug}.json`);
 
 if (DRY) {
