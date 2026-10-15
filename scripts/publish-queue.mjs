@@ -48,37 +48,50 @@ if (!due.length) {
   process.exit(0);
 }
 
-// 밀린 날짜가 여러 개여도 하루 한 편만 낸다. 한꺼번에 쏟으면 대량생성 신호가 된다.
-due.sort((a, b) => a.at.localeCompare(b.at));
-const [{ f, draft, at }] = due;
-
-if (fs.existsSync(path.join(BLOG, `${draft.slug}.html`))) {
-  console.warn(`건너뜀 ${draft.slug} — 이미 발행된 글입니다. 큐에서만 제거합니다.`);
-  if (!DRY) fs.rmSync(path.join(QUEUE, f));
-  emit('published=0');
-  process.exit(0);
+// 같은 날짜로 예약된 글은 함께 낸다(2026-10-15 부터 평일 2편).
+// 다만 밀린 날짜까지 한꺼번에 쏟지는 않는다 — 대량생성 신호가 된다.
+// 그래서 "가장 오래된 하루치" 만 내고 나머지 날짜는 다음 실행으로 넘긴다.
+due.sort((a, b) => a.at.localeCompare(b.at) || a.f.localeCompare(b.f));
+const batch = due.filter((x) => x.at === due[0].at);
+if (due.length > batch.length) {
+  console.log(`발행일이 지난 글이 ${due.length}편입니다. 오늘은 ${due[0].at} 자 ${batch.length}편만 냅니다.`);
 }
 
-const { publishAt, ...rest } = draft;
-// date 는 publishAt 을 따른다. rest.date 를 우선하면 안 된다.
-//
-// 초안을 쓴 날이 date 로 박히는데, 예약일을 옮기면 publishAt 만 바뀌고 date 는 그대로다.
-// 그러면 10/13 에 나간 글이 datePublished 10/07 로 올라가고, 사이트맵 lastmod 도
-// 옛 날짜가 되어 (1) 검색엔진이 새 글로 보지 않고 (2) 발행 감시가 "멈췄다" 고 오탐한다.
-// 2026-10-13 에 실제로 그렇게 됐다 — 3편이 나갔는데 사이트맵 최신일이 10/07 이었다.
-const final = { ...rest, date: at || rest.date };
-const draftPath = path.join(DRAFTS, `${final.slug}.json`);
+const titles = [];
+for (const { f, draft, at } of batch) {
 
-if (DRY) {
-  console.log(`[dry] ${final.slug} (${at}) — ${final.title}`);
-  process.exit(0);
+  if (fs.existsSync(path.join(BLOG, `${draft.slug}.html`))) {
+    console.warn(`건너뜀 ${draft.slug} — 이미 발행된 글입니다. 큐에서만 제거합니다.`);
+    if (!DRY) fs.rmSync(path.join(QUEUE, f));
+    continue;
+  }
+
+  const { publishAt, ...rest } = draft;
+  // date 는 publishAt 을 따른다. rest.date 를 우선하면 안 된다.
+  //
+  // 초안을 쓴 날이 date 로 박히는데, 예약일을 옮기면 publishAt 만 바뀌고 date 는 그대로다.
+  // 그러면 10/13 에 나간 글이 datePublished 10/07 로 올라가고, 사이트맵 lastmod 도
+  // 옛 날짜가 되어 (1) 검색엔진이 새 글로 보지 않고 (2) 발행 감시가 "멈췄다" 고 오탐한다.
+  // 2026-10-13 에 실제로 그렇게 됐다 — 3편이 나갔는데 사이트맵 최신일이 10/07 이었다.
+  const final = { ...rest, date: at || rest.date };
+  const draftPath = path.join(DRAFTS, `${final.slug}.json`);
+
+  if (DRY) {
+    console.log(`[dry] ${final.slug} (${at}) — ${final.title}`);
+    titles.push(final.title);
+    continue;
+  }
+
+  fs.mkdirSync(DRAFTS, { recursive: true });
+  fs.writeFileSync(draftPath, `${JSON.stringify(final, null, 2)}
+`, 'utf8');
+  execFileSync(process.execPath, ['scripts/author/render-article.mjs', draftPath], { stdio: 'inherit' });
+  fs.rmSync(path.join(QUEUE, f));
+  titles.push(final.title);
+  console.log(`발행 ${final.slug} (${at})`);
 }
 
-fs.mkdirSync(DRAFTS, { recursive: true });
-fs.writeFileSync(draftPath, `${JSON.stringify(final, null, 2)}\n`, 'utf8');
-execFileSync(process.execPath, ['scripts/author/render-article.mjs', draftPath], { stdio: 'inherit' });
-fs.rmSync(path.join(QUEUE, f));
-
-emit('published=1');
-emit(`summary=${final.title.slice(0, 180)}`);
-console.log(`\n발행 ${final.slug} (${at}), 큐 잔량 ${files.length - 1}편`);
+emit(`published=${titles.length}`);
+if (titles.length) emit(`summary=${titles.join(' / ').slice(0, 180)}`);
+console.log(`
+발행 ${titles.length}편, 큐 잔량 ${files.length - titles.length}편`);
