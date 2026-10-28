@@ -26,7 +26,11 @@ const TARGET = 12;
 const MAX_ADD = 12;
 const RETRY = 2;
 const BATCH_TIMEOUT = 30 * 60 * 1000;
-const REGIONS = ['jeonju', 'iksan', 'gunsan'];
+// 2026-10-28 지역 확대. 전북 안쪽(남원·김제·정읍)과 인접 광역시(광주·대전)를 더했다.
+// 광주·대전은 전주지방법원 관할이 아니다 — 글마다 맞는 법원을 써야 한다(COURT 참고).
+const REGIONS = ['jeonju', 'iksan', 'gunsan', 'gwangju', 'daejeon', 'namwon', 'gimje', 'jeongeup'];
+// slug 접두사 검사용. REGIONS 를 늘리면 여기도 따라오므로 따로 고칠 일이 없다.
+const REGION_RE = new RegExp('^(' + REGIONS.join('|') + ')-');
 
 /**
  * 지역별 타깃 키워드 풀.
@@ -49,6 +53,12 @@ const KEYWORD = {
   ],
   iksan: ['익산개인회생'],   // 250
   gunsan: ['군산개인회생'],  // 320
+  // 2026-10-28 실측. 대전·광주는 전주보다 크다.
+  gwangju: ['광주개인회생'],   // 1,620
+  daejeon: ['대전개인회생'],   // 3,140
+  namwon: ['남원개인회생'],    // 65
+  gimje: ['김제개인회생'],     // 45
+  jeongeup: ['정읍개인회생'],  // 70
 };
 
 /**
@@ -66,6 +76,11 @@ const KEYWORD_INFORMATIONAL = {
   jeonju: '전주법무사',
   iksan: '익산법무사',
   gunsan: '군산법무사',
+  gwangju: '광주법무사',
+  daejeon: '대전법무사',   // 2,350 — 이 지역에서 가장 큰 말이다
+  namwon: '남원법무사',    // 90
+  gimje: '김제시법무사',   // 35
+  jeongeup: '정읍법무사',  // 110
 };
 
 const CLAUDE = [
@@ -103,7 +118,7 @@ function validate(slug, known) {
   }
   if (e.length) return e.map((x) => `${slug}: ${x}`);
   if (d.slug !== slug) e.push('slug 불일치');
-  if (!/^(jeonju|iksan|gunsan)-/.test(d.slug)) e.push('slug 지역 접두사 없음');
+  if (!REGION_RE.test(d.slug)) e.push('slug 지역 접두사 없음');
   if (len(d.title) > 50) e.push(`title 50자 초과(${len(d.title)})`);
   const desc = len(d.description);
   if (desc < 45 || desc > 160) e.push(`description ${desc}자(45~160)`);
@@ -120,7 +135,7 @@ function validate(slug, known) {
   // 그대로 남아 있어서, 익산·군산 글이 전부 "전주개인회생 키워드 없음" 으로 반려됐다.
   // 보충이 며칠째 0건으로 끝났고 큐가 말라 발행이 멈췄다(2026-09-26 확인).
   // 지역별 키워드 표를 그대로 쓴다 — 표를 늘리면 검사도 같이 따라온다.
-  const region = (String(d.slug).match(/^(jeonju|iksan|gunsan)-/) || [])[1];
+  const region = (String(d.slug).match(REGION_RE) || [])[1];
   const wanted = KEYWORD[region] || [];
   const haystack = String(d.bodyHtml) + d.title;
   if (wanted.length && !wanted.some((k) => haystack.includes(k))) {
@@ -191,6 +206,11 @@ ${rows}
   · 전주 → 전주지방법원 (전주회생법원 아님)
   · 익산 → 전주지방법원 군산지원
   · 군산 → 전주지방법원 군산지원
+  · 남원 → 전주지방법원 남원지원
+  · 정읍 → 전주지방법원 정읍지원
+  · 김제 → 전주지방법원 (김제는 별도 지원이 없다)
+  · **광주 → 광주지방법원** (전주지방법원이 아니다. 전북이 아니라 광주광역시다)
+  · **대전 → 대전지방법원** (대전은 충청권이다. 전주 관할로 쓰면 틀린 글이 된다)
 - **"법무사" 를 자칭하지 않는다.** 태앤규는 법무법인(변호사)이다.
   다만 "○○법무사" 로 검색해 들어오는 사람이 많으므로, 그 표현이 어울리는 주제라면
   **비교·안내 각도**로 다룬다 — 개인회생을 법무사에게 맡길 때와 변호사에게 맡길 때
@@ -346,7 +366,7 @@ let slotsToday = 0;
 for (let i = 0; i < need; i += 1) {
   if (slotsToday === 0 || slotsToday >= PER_DAY) { day = nextWeekday(day); slotsToday = 0; }
   slotsToday += 1;
-  const region = REGIONS[i % 3];
+  const region = REGIONS[i % REGIONS.length];
   batch.push({ region, keyword: pickKeyword(region), publishAt: day });
 }
 log(`${need}건 보충 시작 → ${batch[0].publishAt} ~ ${batch[batch.length - 1].publishAt}`);
