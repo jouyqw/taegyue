@@ -261,6 +261,32 @@ if (GIT) {
 
 let qn = queueItems().length;
 log(`─── 큐 점검 (KST ${TODAY}) ─── 큐 ${qn}편 · 발행(초안) ${jsonSlugs(DRAFTS).size}편`);
+/**
+ * 배정표가 마르기 전에 알린다.
+ *
+ * 지금까지는 다 쓴 뒤에야 알 수 있었다. 주제가 떨어지면 보충은 실패가 아니라
+ * "쓸 주제 없음" 으로 조용히 끝나 알림이 안 뜬다. 2026-10-28 에 확인해 보니
+ * 남은 주제가 6편(사흘치)뿐이었다. 바닥나고 나서 알면 이미 발행이 끊긴 뒤다.
+ */
+{
+  const bank = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'topic-bank.json'), 'utf8'));
+  // queueItems() 는 파일명 배열을 준다(내용이 아니다).
+  const done = new Set([...jsonSlugs(DRAFTS), ...queueItems().map((f) => f.replace(/\.json$/, ''))]);
+  const left = (bank.topics || []).filter((t) => !done.has(t.slug)).length;
+  log(`배정표 남은 주제 ${left}편`);
+  if (left < 12) {       // 평일 2편 기준 6영업일
+    log(`!! 배정표가 ${left}편뿐입니다 — content/topic-bank.json 에 주제를 더 넣어야 합니다`);
+    try {
+      fs.writeFileSync(path.join(process.env.USERPROFILE || '', 'Desktop', '전주개인회생_주제부족.txt'),
+        `${stamp()}\ntaeandkyujeonju.com 칼럼 배정표가 ${left}편뿐입니다.\n\n`
+        + `평일 2편이면 ${Math.floor(left / 2)}영업일 뒤 발행이 끊깁니다.\n`
+        + `content/topic-bank.json 의 topics 에 주제를 추가해 주세요.\n`);
+    } catch { }
+  } else {
+    try { fs.rmSync(path.join(process.env.USERPROFILE || '', 'Desktop', '전주개인회생_주제부족.txt')); } catch { }
+  }
+}
+
 if (CHECK) {
   queueItems().sort().forEach((f) => { const d = JSON.parse(fs.readFileSync(path.join(QUEUE, f), 'utf8')); console.log(`  ${d.publishAt}  ${d.title}`); });
   process.exit(0);
