@@ -1,6 +1,6 @@
 {
-  "note": "전주·익산·군산 개인회생 칼럼 주제 후보입니다. cloudflare_pages_upload/blog/ 에 같은 슬러그가 있으면 건너뛰고, 없으면 새로 씁니다. 세 지역 키워드(전주개인회생·익산개인회생·군산개인회생)가 목표이므로 지역을 골고루 순환시키세요. angle 은 그 글에서만 다룰 고유 각도이며, 다른 글과 내용이 겹치지 않게 하는 장치입니다(유사도 검증 통과 목적). 지역별 타깃 키워드는 scripts/refill-queue.mjs 의 KEYWORD 에서 배정합니다. 법무사 키워드는 자칭이 아니라 비교·안내 각도로만 씁니다.",
-  "keyword": "전주개인회생, 익산개인회생, 군산개인회생",
+  "note": "전주·익산·군산·광주·대전·남원·김제·정읍 개인회생 칼럼 주제 후보입니다. cloudflare_pages_upload/blog/ 에 같은 슬러그가 있으면 건너뛰고, 없으면 새로 씁니다. 지역은 인구순으로 가중해 배정합니다(대전·광주·전주가 많고 남원·김제·정읍은 적게). angle 에 적힌 괄호 안 숫자는 네이버 검색광고 API 실측 월간 검색수입니다. angle 은 그 글에서만 다룰 고유 각도이며, 다른 글과 내용이 겹치지 않게 하는 장치입니다(유사도 검증 통과 목적). 지역별 타깃 키워드는 scripts/refill-queue.mjs 의 KEYWORD 에서 배정합니다. 법무사 키워드는 자칭이 아니라 비교·안내 각도로만 씁니다.",
+  "keyword": "전주·익산·군산·광주·대전·남원·김제·정읍 (지역 배정은 refill-queue.mjs 의 REGION_WEIGHT — 인구순 가중)",
   "rotation": "발행할 때마다 jeonju → iksan → gunsan 순으로 지역을 바꾸세요. 같은 지역이 연달아 나오지 않게 합니다.",
   "topics": [
     {
@@ -447,6 +447,102 @@
       "slug": "namwon-rehabilitation-farm",
       "title": "남원개인회생 농업 소득",
       "angle": "농업·계절 소득을 변제금 산정에 넣는 방법"
+    },
+    {
+      "slug": "daejeon-rehabilitation-eligibility",
+      "title": "대전개인회생 신청자격",
+      "angle": "개인회생신청자격 20,900 — 소득·채무 한도와 \"자격이 안 된다\" 고 듣는 흔한 이유. 대전지방법원 기준",
+      "region": "daejeon"
+    },
+    {
+      "slug": "gwangju-rehabilitation-eligibility-income",
+      "title": "광주개인회생 신청자격 중 소득 요건",
+      "angle": "개인회생신청자격 20,900 — 소득이 불규칙한 사람의 소득 인정 방식. 광주지방법원",
+      "region": "gwangju"
+    },
+    {
+      "slug": "daejeon-rehabilitation-cost-breakdown",
+      "title": "대전개인회생 비용은 무엇으로 나뉘나",
+      "angle": "개인회생비용 3,440 / 수임료 1,190 — 법원 예납금·송달료와 대리인 보수를 가른다",
+      "region": "daejeon"
+    },
+    {
+      "slug": "gwangju-rehabilitation-period-shorten",
+      "title": "광주개인회생 기간을 줄일 수 있나",
+      "angle": "개인회생기간단축 3,290 — 변제기간이 정해지는 근거와 줄어드는 경우",
+      "region": "gwangju"
+    },
+    {
+      "slug": "daejeon-rehabilitation-procedure-order",
+      "title": "대전개인회생 절차는 어떤 순서로 가나",
+      "angle": "개인회생절차 3,080 — 신청부터 인가까지 각 단계에서 무엇이 오는지",
+      "region": "daejeon"
+    },
+    {
+      "slug": "gwangju-rehabilitation-commencement",
+      "title": "광주개인회생 개시결정이 나면 달라지는 것",
+      "angle": "개인회생개시결정 1,570 — 추심 중지와 그 전까지 버티는 방법",
+      "region": "gwangju"
+    },
+    {
+      "slug": "daejeon-rehabilitation-repayment-amount",
+      "title": "대전개인회생 변제금은 어떻게 정해지나",
+      "angle": "개인회생변제금 1,050 / 변제금조회 1,170 — 가용소득 산정과 최저생계비",
+      "region": "daejeon"
+    },
+    {
+      "slug": "gwangju-rehabilitation-correction-notice",
+      "title": "광주개인회생 보정권고를 받았다면",
+      "angle": "개인회생보정권고 940 — 보정과 보정명령의 차이, 기한을 놓치면",
+      "region": "gwangju"
+    },
+    {
+      "slug": "daejeon-rehabilitation-discharge-after",
+      "title": "대전개인회생 면책 뒤에 남는 것",
+      "angle": "개인회생면책 760 / 면책후 640 — 신용 회복 시점과 남는 채무",
+      "region": "daejeon"
+    },
+    {
+      "slug": "gwangju-bankruptcy-eligibility",
+      "title": "광주개인파산 신청자격",
+      "angle": "개인파산신청자격 8,560 — 회생과 파산을 가르는 기준. 광주 기준",
+      "region": "gwangju"
+    },
+    {
+      "slug": "jeonju-workout-vs-rehabilitation",
+      "title": "개인워크아웃과 개인회생, 전주에서 어느 쪽인가",
+      "angle": "개인워크아웃 10,270 / 조건 4,490 — 신복위 제도와 법원 절차를 가른다",
+      "region": "jeonju"
+    },
+    {
+      "slug": "daejeon-fast-debt-adjustment",
+      "title": "신속채무조정부터 보셔야 하는 경우 — 대전",
+      "angle": "신속채무조정 14,490 — 연체 전 단계 제도. 회생까지 안 가도 되는 사람",
+      "region": "daejeon"
+    },
+    {
+      "slug": "gwangju-debt-adjustment-compare",
+      "title": "채무조정제도 세 가지를 광주에서 비교하면",
+      "angle": "채무조정제도 10,630 / 신용회복 7,280 — 워크아웃·회생·파산 비교표",
+      "region": "gwangju"
+    },
+    {
+      "slug": "jeonju-case-number-lookup",
+      "title": "전주개인회생 사건번호로 진행 상황 보는 법",
+      "angle": "개인회생사건번호조회 4,280 — 법원 사이트에서 직접 확인하는 순서",
+      "region": "jeonju"
+    },
+    {
+      "slug": "iksan-payment-order-response",
+      "title": "익산에서 지급명령을 받았다면",
+      "angle": "지급명령 4,880 — 이의신청 기한 2주와 회생을 같이 볼 때",
+      "region": "iksan"
+    },
+    {
+      "slug": "gunsan-rehabilitation-giveup-midway",
+      "title": "군산개인회생 중도에 못 내게 되면",
+      "angle": "개인회생중도포기 — 폐지와 변제계획 변경 사이",
+      "region": "gunsan"
     }
   ]
 }

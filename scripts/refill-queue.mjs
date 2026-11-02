@@ -35,6 +35,56 @@ const REGIONS = ['jeonju', 'iksan', 'gunsan', 'gwangju', 'daejeon', 'namwon', 'g
 const REGION_RE = new RegExp('^(' + REGIONS.join('|') + ')-');
 
 /**
+ * 2026-11-02 지역을 인구순으로 가중한다.
+ *
+ * 그전에는 REGIONS[i % 8] 로 여덟 지역에 똑같이 나눠 줬다. 남원(7만)이
+ * 대전(144만)과 같은 편수를 받고 있었다는 뜻이다.
+ *
+ * 네이버 검색량으로 재 보니 인구순과 거의 같았다.
+ *   대전개인회생 2,870 · 전주개인회생 1,900 · 광주개인회생 1,550
+ *   군산개인회생 290 · 익산개인회생 240
+ *   남원·김제개인회생 — 월 100회 미만으로 조회조차 안 된다
+ *
+ * 그래서 남원·김제·정읍은 끊지 않고 가장 낮은 무게로만 남긴다.
+ * 경쟁이 거의 없어 한 편으로도 자리를 잡고, 끊으면 그 자리를 내준다.
+ * 전주는 사무실이 있는 곳이라 검색량(3위)보다 한 칸 올려 둔다.
+ */
+const REGION_WEIGHT = {
+  daejeon: 4,   // 144만
+  gwangju: 4,   // 141만
+  jeonju: 4,    //  64만 — 사무실 소재지
+  iksan: 2,     //  26.5만
+  gunsan: 2,    //  26만
+  jeongeup: 1,  //  10만
+  gimje: 1,     //   8만
+  namwon: 1,    //   7.4만
+};
+
+/**
+ * 무게만큼 늘린 뒤 같은 지역이 연달아 붙지 않게 섞는다.
+ * 그냥 ['daejeon','daejeon','daejeon','daejeon','gwangju',...] 로 두면
+ * 하루 2편이 같은 지역으로 묶여 그날 글 둘이 서로 순위를 깎는다.
+ */
+function regionCycle() {
+  const left = new Map(REGIONS.map((r) => [r, REGION_WEIGHT[r] ?? 1]));
+  const out = [];
+  let prev = null;
+  while ([...left.values()].some((n) => n > 0)) {
+    // 남은 편수가 가장 많은 지역부터. 단, 바로 앞과 같은 지역은 건너뛴다
+    const next = [...left.entries()]
+      .filter(([r, n]) => n > 0 && r !== prev)
+      .sort((a, b) => b[1] - a[1])[0]
+      // 마지막 하나가 앞과 같은 지역만 남은 경우에는 그대로 둔다
+      ?? [...left.entries()].find(([, n]) => n > 0);
+    left.set(next[0], next[1] - 1);
+    out.push(next[0]);
+    prev = next[0];
+  }
+  return out;
+}
+const REGION_PLAN = regionCycle();
+
+/**
  * 지역별 타깃 키워드 풀.
  *
  * 예전에는 지역이 셋인데 본문 키워드는 "전주개인회생" 하나로 고정이었다.
@@ -56,8 +106,18 @@ const KEYWORD = {
   iksan: ['익산개인회생'],   // 250
   gunsan: ['군산개인회생'],  // 320
   // 2026-10-28 실측. 대전·광주는 전주보다 크다.
-  gwangju: ['광주개인회생'],   // 1,620
-  daejeon: ['대전개인회생'],   // 3,140
+  // 2026-11-02 인구순 가중을 넣어 둘이 한 바퀴에 4편씩 받게 됐다.
+  // 키워드가 하나뿐이면 같은 말이 네 번 반복되므로 변형을 같이 넣었다.
+  // 변형은 작지만(250·220) 경쟁 글이 적어 한 편으로도 자리가 잡힌다.
+  gwangju: [
+    '광주개인회생',      // 1,550
+    '광주개인파산',      //   220
+  ],
+  daejeon: [
+    '대전개인회생',      // 2,870
+    '대전개인회생전문',  //   250 — 자칭이 아닌 설명 각도로만. 검사가 막아 준다
+    '대전회생',          //   120
+  ],
   namwon: ['남원개인회생'],    // 65
   gimje: ['김제개인회생'],     // 45
   jeongeup: ['정읍개인회생'],  // 70
@@ -368,7 +428,7 @@ let slotsToday = 0;
 for (let i = 0; i < need; i += 1) {
   if (slotsToday === 0 || slotsToday >= PER_DAY) { day = nextWeekday(day); slotsToday = 0; }
   slotsToday += 1;
-  const region = REGIONS[i % REGIONS.length];
+  const region = REGION_PLAN[i % REGION_PLAN.length];
   batch.push({ region, keyword: pickKeyword(region), publishAt: day });
 }
 log(`${need}건 보충 시작 → ${batch[0].publishAt} ~ ${batch[batch.length - 1].publishAt}`);
