@@ -14,7 +14,8 @@ export const NAVER_MAP = 'https://naver.me/Fy2SbxqM';
 export const OG_IMAGE = `${SITE}/og-cover.jpg`;
 
 export const esc = (v = '') => String(v)
-  .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
+  .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;')
+  .replaceAll("'", '&#39;');
 
 // 구글 폰트: 실제 사용하는 웨이트만 로드합니다(기존 12웨이트 → 5웨이트).
 export const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
