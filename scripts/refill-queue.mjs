@@ -21,8 +21,10 @@ const LOG = path.join(ROOT, 'refill.log');
 const LOCK = path.join(ROOT, '.refill.lock');
 const DESK = path.join(process.env.USERPROFILE || '', 'Desktop', '전주개인회생칼럼_보충_실패.txt');
 
-const THRESHOLD = 6;
-const TARGET = 12;
+// 경고는 12편 아래에서 울리는데 보충은 6편 아래에서만 돌았다.
+// 그 사이 6~11편 구간에서는 경고만 뜨고 아무것도 채워지지 않았다. 둘을 같은 선에 맞춘다.
+const THRESHOLD = 12;
+const TARGET = 20;
 const MAX_ADD = 12;
 const RETRY = 2;
 const BATCH_TIMEOUT = 30 * 60 * 1000;
